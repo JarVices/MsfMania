@@ -1,0 +1,47 @@
+Projet : Création d'un outil permetant la génération d'un exécutable Win32, qui exécutera une série d'instructions,
+	 avant d'exécuter un shellcode meterpreter au choix (x64 ou x86 en C);
+
+PS : Cet outil en sera un parmis notre Hack Toolkit;
+
+
+1-main.py 
+	/*
+		Code principale contenant les appels aux fonctions de générations de malware;
+	1.1 - Choix de payload;
+	1.2 - Auto-génération de payload;
+	1.3 - Choix du nombre de decoil;
+	1.4 - Choix de persistance;
+	1.5 - Choix de "Run with Admin";
+	1.6 - Auto-génération du source.c;
+	1.7 - Auto-compilation du source.c;
+	1.8 - Strip de l'exécutable (voir "STRIP UNIX");
+	*/
+
+
+2-evasion.py
+	/*
+		Module contenant le code nécéssaire en pour l'évasion Windows (conditions avant l'exécution de shellcode);
+		Permettra de vérifier le système cible avant l'exécution du shellcode; Pour limiter le RE;
+	2.1 - Decoil;
+	2.2 - check VM (MAC ADDR, );
+	2.3 - Check Sandbox;
+	2.4 - Check Language;
+	2.5 - Check Tools;
+	2.6 - Check OS;
+	*/
+
+
+3-exploitation.py
+	/*
+		Module contenant le code nécéssaire pour la post-exploitation;
+	3.1 - Persistence;
+	3.2 - Run with Admin;
+	*/
+
+
+4-junkcode.py
+	/*
+		Module contenant le code nécéssaire en langage C pour brouiller un analyste ou un antivirus;
+		Du faux code dans l'exécutable, qui ne sert à rien. Chaque fonction (junk) sera unique;
+	4.1 - 40 fausses fonctions uniques;
+	*/
