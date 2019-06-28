@@ -31,7 +31,7 @@ PS : Cet outil en sera un parmis notre Hack Toolkit;
 	*/
 
 
-3-exploitation.py
+3-post-exploitation.py
 	/*
 		Module contenant le code nécéssaire pour la post-exploitation;
 	3.1 - Persistence;
