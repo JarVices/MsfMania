@@ -45,6 +45,12 @@ PS : Cet outil en sera un parmis notre Hack Toolkit;
 		Du faux code dans l'exécutable, qui ne sert à rien. Chaque fonction (junk) sera unique;
 	4.1 - 40 fausses fonctions uniques;
 	*/
+	
+
+5-core.py
+	/*
+		Module contenant des fonctions utilitaires;
+	*/
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 IMPORTANT	IMPORTANT	IMPORTANT	IMPORTANT	IMPORTANT	IMPORTANT	IMPORTANT	IMPORTANT	 
