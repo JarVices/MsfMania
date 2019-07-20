@@ -23,7 +23,7 @@ PS : Cet outil en sera un parmis notre Hack Toolkit;
 		Module contenant le code nécéssaire en pour l'évasion Windows (conditions avant l'exécution de shellcode);
 		Permettra de vérifier le système cible avant l'exécution du shellcode; Pour limiter le RE;
 	2.1 - Decoil;
-	2.2 - check VM (MAC ADDR, );
+	2.2 - Check VM;
 	2.3 - Check Sandbox;
 	2.4 - Check Language;
 	2.5 - Check Tools;
