@@ -64,3 +64,4 @@ IMPORTANT	IMPORTANT	IMPORTANT	IMPORTANT	IMPORTANT	IMPORTANT	IMPORTANT	IMPORTANT
 
 Obfuscation : https://www.supinfo.com/articles/single/602-qu-est-ce-que-obfuscation-code#idm46133037963232
 Evasion Anti-Virus : https://www.0x0ff.info/2013/antivirus-technique-devasion-logiciels-espions/
+Persistence : https://www.youtube.com/watch?v=UbMOUgwu4s0
