@@ -14,8 +14,8 @@
 	1.7 - Friendly Apps (Personnalisation de l'exécutable);
 	1.8 - Auto-génération du source.c;
 	1.9 - Auto-compilation du source.c;
-	1.10 - Choix de packing (UPX ?);
-	1.11 - Strip de l'exécutable (voir "STRIP UNIX");
+	1.10 - Strip de l'exécutable (voir "STRIP UNIX");
+	1.11 - Choix de packing (UPX ?);
 	*/
 
 
@@ -33,21 +33,15 @@
 	*/
 
 
-3-post-exploitation.py
-	/*
-		Module contenant le code nécéssaire pour la post-exploitation;
-	*/
-
-
-4-junkcode.py
+3-junkcode.py
 	/*
 		Module contenant le code nécéssaire en langage C pour brouiller un analyste ou un antivirus;
 		Du faux code dans l'exécutable, qui ne sert à rien. Chaque fonction (junk) sera unique;
-	4.1 - 80 fausses fonctions uniques;
+	3.1 - 80 fausses fonctions uniques;
 	*/
 	
 
-5-core.py
+4-core.py
 	/*
 		Module contenant des fonctions utilitaires;
 	*/
