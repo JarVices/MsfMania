@@ -25,11 +25,9 @@
 		Permettra de vérifier le système cible avant l'exécution du shellcode; Pour limiter le RE;
 	2.1 - Decoil;
 	2.2 - Check VM;
-	2.3 - Check Sandbox;
-	2.4 - Check Language;
-	2.5 - Check Tools;
-	2.6 - Check OS;
-	2.7 - Comment (Language : Russian, Chinese, Indian, Japonais)
+	2.3 - Check Language;
+	2.4 - Check OS;
+	2.5 - Comment (Language : Russian, Chinese, Indian, Japonais)
 	*/
 
 
@@ -37,7 +35,7 @@
 	/*
 		Module contenant le code nécéssaire en langage C pour brouiller un analyste ou un antivirus;
 		Du faux code dans l'exécutable, qui ne sert à rien. Chaque fonction (junk) sera unique;
-	3.1 - 80 fausses fonctions uniques;
+	3.1 - 80 fonctions uniques et inutiles;
 	*/
 	
 

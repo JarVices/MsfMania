@@ -40,11 +40,11 @@ def Advanced_Windows_Meterpreter():
         Choice = core.core_input()
 
         if Choice == "1":
-            core.x86_Windows_Stager_Choice()
+            AWM_x86()
             AWM_while = False
 
         elif Choice == "2":
-            core.x64_Windows_Stager_Choice()
+            AWM_x64()
             AWM_while = False
 
         else:
@@ -95,12 +95,15 @@ def AWM_x64():
 
         if Choice == "1":
             x64_Win_Meterpreter_Rev_Tcp.Construction()
+            AWM_x64_while = False
 
         elif Choice == "2":
             x64_Win_Meterpreter_Rev_Http.Construction()
+            AWM_x64_while = False
 
         elif Choice == "3":
             x64_Win_Meterpreter_Rev_Https.Construction()
+            AWM_x64_while = False
 
         else:
             core.Clear()

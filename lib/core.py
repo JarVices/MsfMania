@@ -30,6 +30,7 @@ def core_input():
     Input = input("Please enter you choice : ")
     return Input
 
+
 def Module_Choice():
     print("""
  |-----------------------------------|
@@ -64,4 +65,26 @@ def x64_Windows_Stager_Choice():
  | [2] Windows x64 Meterpreter Reverse HTTP  (C); |
  | [3] Windows x64 Meterpreter Reverse HTTPS (C); |
  |------------------------------------------------| 
+    """)
+
+
+def x86_Windows_Features():
+    print("""
+ |----------------------------------------------|
+ | Decoil   : Memory Alloc, Waiting Time;       |
+ | Junkcode : Friendly Function;                |
+ | Evasion  : Check VM, OS, Language;           |
+ | Language : Adding foreign language comments; |
+ |----------------------------------------------|
+    """)
+
+
+def x64_Windows_Features():
+    print("""
+ |----------------------------------------------|
+ | Decoil   : Memory Alloc, Waiting Time;       |
+ | Junkcode : Friendly Function;                |
+ | Evasion  : Check VM, OS, Language;           |
+ | Language : Adding foreign language comments; |
+ |----------------------------------------------|
     """)

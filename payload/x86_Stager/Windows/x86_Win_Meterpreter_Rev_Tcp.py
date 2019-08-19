@@ -1,2 +1,5 @@
+from lib import core
+
 def Construction():
-    print("Payload x86 Meterpreter Reverse TCP")
+    print("\nPayload x86 Meterpreter Reverse TCP\n")
+    core.x86_Windows_Features()
