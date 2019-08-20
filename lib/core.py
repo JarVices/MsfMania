@@ -27,7 +27,12 @@ def Bad_Choice():
 
 
 def core_input():
-    Input = input("Please enter you choice : ")
+    Input = input("Enter you choice : ")
+    return Input
+
+
+def core_input_pass():
+    Input = input("Press any key to continue : ")
     return Input
 
 
