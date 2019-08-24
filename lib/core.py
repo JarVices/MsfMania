@@ -1,4 +1,6 @@
+#Import
 import os
+
 
 
 def Banner():
@@ -18,12 +20,15 @@ def Banner():
     """)
 
 
+
 def Clear():
     os.system("clear")
 
 
+
 def Bad_Choice():
     print("Bad choice !!! Try again\n")
+
 
 
 def core_input():
@@ -31,9 +36,11 @@ def core_input():
     return Input
 
 
+
 def core_input_pass():
     Input = input("Press any key to continue : ")
     return Input
+
 
 
 def Module_Choice():
@@ -44,6 +51,7 @@ def Module_Choice():
     """)
 
 
+
 def Windows_Arch_Choice():
     print("""
  |---------------|
@@ -51,6 +59,7 @@ def Windows_Arch_Choice():
  | [2] Arch x64; |
  |---------------|
     """)
+
 
 
 def x86_Windows_Stager_Choice():
@@ -63,6 +72,7 @@ def x86_Windows_Stager_Choice():
     """)
 
 
+
 def x64_Windows_Stager_Choice():
     print("""
  |------------------------------------------------|
@@ -71,6 +81,7 @@ def x64_Windows_Stager_Choice():
  | [3] Windows x64 Meterpreter Reverse HTTPS (C); |
  |------------------------------------------------| 
     """)
+
 
 
 def x86_Windows_Features():
@@ -82,6 +93,7 @@ def x86_Windows_Features():
  | Language : Adding foreign language comments; |
  |----------------------------------------------|
     """)
+
 
 
 def x64_Windows_Features():
