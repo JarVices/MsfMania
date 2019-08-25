@@ -7,7 +7,7 @@ When generating the payload with Msfvenom, the output is incremented in a polymo
 The main objective being antivirus evasion, this code contains random functions allowing it. 
 It also contains evasion functions that the user can configure himself.
 
-# Version 0.2
+# Version 1.0.0
  New features:
  1. Generate 32/x64 bits meterpreter stager reverse HTTP, HTTPS, TCP.
  2. Auto-Compilation.
