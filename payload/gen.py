@@ -147,7 +147,7 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM):
 
 def Auto_Executable_Strip(FILENAME, PLATFORM):
 
-    Stripper = False
+    Stripper = True
 
     while Stripper:
 
