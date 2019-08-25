@@ -112,9 +112,9 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM):
 
     Compiler = True
 
-    #x64 PART
     while Compiler:
-
+        
+        #x64 PART
         if ("64") in ARCH:
             if ("Windows") in PLATFORM:
 
