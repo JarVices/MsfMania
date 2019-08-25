@@ -29,6 +29,7 @@ def Modules():
             continue
 
 
+
 #Function to select Windows modules
 def Advanced_Windows_Meterpreter():
 
@@ -52,6 +53,7 @@ def Advanced_Windows_Meterpreter():
             core.Windows_Arch_Choice()
             core.Bad_Choice()
             continue
+
 
 
 #Function to select x86 Windows payload
@@ -83,6 +85,7 @@ def AWM_x86():
             continue
 
 
+
 #Function to select x64 Windows payload
 def AWM_x64():
 
@@ -110,6 +113,7 @@ def AWM_x64():
             core.x64_Windows_Stager_Choice()
             core.Bad_Choice()
             continue
+
 
 
 #Exec modules function
