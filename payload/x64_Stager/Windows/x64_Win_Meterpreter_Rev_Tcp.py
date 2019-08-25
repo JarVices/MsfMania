@@ -54,4 +54,8 @@ def Construction():
 
         gen.Auto_Compiler(FILENAME, ARCH, PLATFORM)
 
+        print("Stripping")
+
+        gen.Auto_Executable_Strip(FILENAME, PLATFORM)
+
         Gen_Payload = False
