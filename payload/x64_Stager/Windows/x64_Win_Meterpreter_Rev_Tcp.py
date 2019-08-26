@@ -48,11 +48,13 @@ def Construction():
         with open('source.c', 'w') as f:
             f.write(Final_Code)
 
-        print("\nFichier généré\n")
+        print("Fichier généré")
 
-        print("\nCompiling\n")
+        ICON = gen.Add_Icon()
 
-        gen.Auto_Compiler(FILENAME, ARCH, PLATFORM)
+        print("Compiling")
+
+        gen.Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON)
 
         print("Stripping")
 
