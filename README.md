@@ -7,8 +7,8 @@ When generating the payload with Msfvenom, the output is incremented in a polymo
 The main objective being antivirus evasion, this code contains random functions allowing it. 
 It also contains evasion functions that the user can configure himself.
 
-# Version 1.0.1
+# Version 1.0.2
  New features:
- 1. Compile stager with you favorite ICON !
- 2. You can use the "back" command and CTRL+C to exit program safety !
- 3. Code redesign ! 
+ 
+In this version you can now, at the end of the generation of a payload automatically launch a msfconsole handler.
+To save you time. This avoids opening a shell manually, typing information, etc....
