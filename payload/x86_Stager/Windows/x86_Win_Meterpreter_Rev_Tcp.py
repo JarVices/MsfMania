@@ -7,7 +7,9 @@ def Construction():
     PROTOCOLE = "TCP"
     TYPE = "Meterpreter"
     PLATFORM = "Windows"
-
+    
+    RC_PAYLOAD = "windows/meterpreter/reverse_tcp"
+    
     print("Payload x86 Meterpreter Reverse TCP")
     core.x86_Windows_Features()
 
