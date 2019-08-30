@@ -7,6 +7,8 @@ def Construction():
     PROTOCOLE = "HTTPS"
     TYPE = "Meterpreter"
     PLATFORM = "Windows"
+    
+    RC_PAYLOAD = "windows/meterpreter/reverse_http"
 
     print("Payload x86 Meterpreter Reverse HTTPS")
     core.x86_Windows_Features()
