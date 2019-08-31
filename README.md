@@ -7,8 +7,8 @@ When generating the payload with Msfvenom, the output is incremented in a polymo
 The main objective being antivirus evasion, this code contains random functions allowing it. 
 It also contains evasion functions that the user can configure himself.
 
-# Version 1.0.2
+# Version 1.0.3
  New features:
- 
-In this version you can now, at the end of the generation of a payload automatically launch a msfconsole handler.
-To save you time. This avoids opening a shell manually, typing information, etc....
+  1- Added rar compression
+  2- Added color class
+  3- Added 32/64 bit Shell Reverse TCP Payload
