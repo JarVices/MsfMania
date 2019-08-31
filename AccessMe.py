@@ -1,9 +1,6 @@
-#Import
-import os
-
 from lib import core
-from payload.x86_Stager.Windows import x86_Win_Meterpreter_Rev_Http, x86_Win_Meterpreter_Rev_Https, x86_Win_Meterpreter_Rev_Tcp
-from payload.x64_Stager.Windows import x64_Win_Meterpreter_Rev_Http, x64_Win_Meterpreter_Rev_Https, x64_Win_Meterpreter_Rev_Tcp
+from payload.x86_Stager.Windows import x86_Win_Meterpreter_Rev_Http, x86_Win_Meterpreter_Rev_Https, x86_Win_Meterpreter_Rev_Tcp, x86_Win_Shell_Rev_Tcp
+from payload.x64_Stager.Windows import x64_Win_Meterpreter_Rev_Http, x64_Win_Meterpreter_Rev_Https, x64_Win_Meterpreter_Rev_Tcp, x64_Win_Shell_Rev_Tcp
 
 
 #def Check_Environnement():
@@ -33,7 +30,7 @@ def Modules():
 
             elif Choice == "0":
                 core.Clear()
-                print("Exiting...")
+                core.Exit_Program()
                 break
 
             else:
@@ -110,6 +107,10 @@ def AWM_x86():
                 x86_Win_Meterpreter_Rev_Https.Construction()
                 AWM_x86_while = False
 
+            elif Choice == "4":
+                x86_Win_Shell_Rev_Tcp.Construction()
+                AWM_x86_while = False
+
             elif Choice == "0":
                 Advanced_Windows_Meterpreter()
                 AWM_x86_while = False
@@ -149,6 +150,10 @@ def AWM_x64():
 
             elif Choice == "3":
                 x64_Win_Meterpreter_Rev_Https.Construction()
+                AWM_x64_while = False
+
+            elif Choice == "4":
+                x64_Win_Shell_Rev_Tcp.Construction()
                 AWM_x64_while = False
 
             elif Choice == "0":
