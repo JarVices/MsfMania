@@ -8,7 +8,7 @@ The main objective being antivirus evasion, this code contains random functions 
 It also contains evasion functions that the user can configure himself.
 
 # Version 1.0.3
- New features:
-  Added rar compression
-  Added color class
-  Added 32/64 bit Shell Reverse TCP Payload
+New features:
+ 1-Added rar compression
+ 2-Added color class
+ 3-Added 32/64 bit Shell Reverse TCP Payload
