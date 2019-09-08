@@ -16,19 +16,30 @@ class amcolors:
 
 def Banner():
 
-    print("""
+    print(amcolors.BOLD + amcolors.PURPLE + """
     
+                                                                                                              
+       db                                                                  88b           d88              
+      d88b                                                                 888b         d888              
+     d8'`8b                                                                88`8b       d8'88              
+    d8'  `8b      ,adPPYba,   ,adPPYba,   ,adPPYba,  ,adPPYba,  ,adPPYba,  88 `8b     d8' 88   ,adPPYba,  
+   d8YaaaaY8b    a8"     ""  a8"     ""  a8P_____88  I8[    ""  I8[    ""  88  `8b   d8'  88  a8P_____88  
+  d8""""""""8b   8b          8b          8PP"""""""   `"Y8ba,    `"Y8ba,   88   `8b d8'   88  8PP"""""""  
+ d8'        `8b  "8a,   ,aa  "8a,   ,aa  "8b,   ,aa  aa    ]8I  aa    ]8I  88    `888'    88  "8b,   ,aa  
+d8'          `8b  `"Ybbd8"'   `"Ybbd8"'   `"Ybbd8"'  `"YbbdP"'  `"YbbdP"'  88     `8'     88   `"Ybbd8"'  
+                                                                                                          
+                                                                                                         
     
-                     Payload Generator Script 
+                                      Payload Generator Script 
         
-                        Named : 'AccessMe'
+                                         Named : 'AccessMe'
             
-          This program will be used for IT security audits
+                        This program will be used for IT security audits
     
-                         Version : 1.0.3
+                                          Version : 1.0.3
                           
                           
-    """)
+    """ + amcolors.ENDC)
 
 
 
@@ -43,7 +54,7 @@ def Bad_Choice():
 
 
 def core_input():
-    Input = input(amcolors.BLUE + amcolors.BOLD + "\nEnter you choice : " + amcolors.ENDC)
+    Input = input(amcolors.BLUE + amcolors.BOLD + "\n Enter you choice : " + amcolors.ENDC)
     return Input
 
 
