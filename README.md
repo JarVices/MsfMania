@@ -7,8 +7,7 @@ When generating the payload with Msfvenom, the output is incremented in a polymo
 The main objective being antivirus evasion, this code contains random functions allowing it. 
 It also contains evasion functions that the user can configure himself.
 
-# Version 1.0.3
+# Version 1.0.3.1
 New features:
- 1. Added rar compression
- 2. Added color class
- 3. Added 32/64 bit Shell Reverse TCP Payload
+ 1. Code review
+ 2. Bug correction
