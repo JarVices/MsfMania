@@ -19,7 +19,7 @@ def Construction():
 
         LHOST = gen.LHOST_Input()
         LPORT = gen.LPORT_Input()
-        FILENAME = "/root/AccessMe/output/" + gen.FILENAME_Input() + ".exe"
+        FILENAME = "output/" + gen.FILENAME_Input() + ".exe"
 
         print(core.amcolors.OCRA + core.amcolors.BOLD + " [*] Code generation." + core.amcolors.ENDC)
 
