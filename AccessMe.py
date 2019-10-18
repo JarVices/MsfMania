@@ -3,11 +3,6 @@ from payload.x86_Stager.Windows import x86_Win_Meterpreter_Rev_Http, x86_Win_Met
 from payload.x64_Stager.Windows import x64_Win_Meterpreter_Rev_Http, x64_Win_Meterpreter_Rev_Https, x64_Win_Meterpreter_Rev_Tcp, x64_Win_Shell_Rev_Tcp
 
 
-#def Check_Environnement():
-#ln -s /usr/bin/x86_64-w64-mingw32-gcc /usr/bin/windres
-#ln -s /usr/bin/i686-w64-mingw32-windres /usr/bin/windres_1
-
-
 
 #Main function
 def Modules():
