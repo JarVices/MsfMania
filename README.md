@@ -19,3 +19,8 @@ New features:
 1. Latest version of Kali Linux
 2. The kali-rolling repository
 ```
+## Usage
+```
+1. python3 setup.py (Execute only one times)
+2. python AccessMe.py
+```
