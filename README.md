@@ -15,6 +15,7 @@ New features:
 ```
 
 ## Requirements
+```
 1. Latest version of Kali Linux
-2.* [KR Repo](https://docs.kali.org/general-use/kali-linux-sources-list-repositories) - The kali-rolling repository
-
+2. The kali-rolling repository
+```
