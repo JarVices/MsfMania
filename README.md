@@ -7,7 +7,7 @@ When generating the payload with Msfvenom, the output is incremented in a polymo
 The main objective being antivirus evasion, this code contains random functions allowing it. 
 It also contains evasion functions that the user can configure himself.
 
-# Version 1.0.4
+## Version 1.0.4
 New features:
  1. File setup.py
  2. Bug correction
