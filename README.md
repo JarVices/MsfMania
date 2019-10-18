@@ -10,6 +10,11 @@ It also contains evasion functions that the user can configure himself.
 ## Version 1.0.4
 New features:
 ```
- 1. File setup.py
- 2. Bug correction
+1. File setup.py
+2. Bug correction
+```
+
+## Requirements
+```
+
 ```
