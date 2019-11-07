@@ -18,9 +18,10 @@ New features:
 ```
 1. Latest version of Kali Linux
 2. The kali-rolling repository
+3. Python3
 ```
 ## Usage
 ```
 1. python3 setup.py (Execute only one times)
-2. python AccessMe.py
+2. python3 AccessMe.py
 ```
