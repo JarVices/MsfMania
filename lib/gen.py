@@ -513,7 +513,7 @@ def Varname_Creator():
 
 #Random meterpreter encoder iteration
 def Random_Encoder_Iteration():
-    iteration = str(random.randint(1, 1))
+    iteration = str(random.randint(1, 38))
     return iteration
 
 
