@@ -351,7 +351,7 @@ def Compress_Rar(FILENAME):
 
 
 
-def Run_Meterpreter_Script(STAGED, ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
+def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
 
     print("""
  |-----------------------------|  
