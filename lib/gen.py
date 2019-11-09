@@ -41,7 +41,7 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     return SHELLCODE
 
 
-            elif PROTOCOLE ("TCP"):
+            elif PROTOCOLE == ("TCP"):
                 if TYPE == ("Meterpreter"):
 
                     ITERATION = Random_Encoder_Iteration()
