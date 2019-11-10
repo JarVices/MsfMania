@@ -37,7 +37,7 @@ d8'          `8b  `"Ybbd8"'   `"Ybbd8"'   `"Ybbd8"'  `"YbbdP"'  `"YbbdP"'  88   
             
                         This program will be used for IT security audits
     
-                                          Version : 1.1.0
+                                          Version : 1.0.3
                           
                           
     """ + amcolors.ENDC)
