@@ -7,9 +7,10 @@ When generating the payload with Msfvenom, the output is incremented in a polymo
 The main objective being antivirus evasion, this code contains random functions allowing it. 
 It also contains evasion functions that the user can configure himself.
 
-# Version 1.1.0.1
+# Version 1.2
 New features:
 ```
+1- 
 1- Restructured source code.
 2- Bug correction.
 ```
@@ -20,17 +21,23 @@ New features:
 2. The kali-rolling repository
 3. Python3
 ```
+
 # Usage
 ```
 1. python3 setup.py (Execute only one times)
 2. python3 AccessMe.py
 ```
+
 # Features
-- x86 and x64 staged payload meterpreter and shell.
-- x86 and x64 stageless payload meterpreter and shell.
+- x86/x64 staged payload meterpreter/shell.
+- x86/x64 stageless payload meterpreter/shell.
 - Cross-compiler MinGW.
 - Polymorphic C source code.
-- Strip with MinGW
+- Strip with MinGW.
+- Customize the executable with an icon.
+- Local/Remote Thread Shellcode Injection
+- Sandbox Evasion 
+- Antivirus Evasion
 
 # C Payload
 ## Staged
