@@ -36,8 +36,8 @@ windows/x64/meterpreter_reverse_tcp, windows/x64/shell_reverse_tcp).
 -
 ```
 
-## C Payload
-# Staged
+# C Payload
+## Staged
 - windows/x64/meterpreter/reverse_https 
 - windows/x64/meterpreter/reverse_http
 - windows/x64/meterpreter/reverse_tcp
@@ -46,7 +46,7 @@ windows/x64/meterpreter_reverse_tcp, windows/x64/shell_reverse_tcp).
 - windows/x86/meterpreter/reverse_http
 - windows/x86/meterpreter/reverse_tcp
 - windows/x86/shell/reverse_tcp
-# Stageless
+## Stageless
 - windows/x64/meterpreter_reverse_https
 - windows/x64/meterpreter_reverse_http
 - windows/x64/meterpreter_reverse_tcp 
