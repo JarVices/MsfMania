@@ -27,9 +27,8 @@ New features:
 ```
 # Features
 ```
-- x86 and x64 staged payload meterpreter.
-- x86 and x64 stageless payload meterpreter (windows/x64/meterpreter_reverse_https, windows/x64/meterpreter_reverse_http, 
-windows/x64/meterpreter_reverse_tcp, windows/x64/shell_reverse_tcp).
+- x86 and x64 staged payload meterpreter and shell.
+- x86 and x64 stageless payload meterpreter and shell.
 - Cross-compiler MinGW.
 - Polymorphic C source code.
 - Strip with MinGW
@@ -38,6 +37,7 @@ windows/x64/meterpreter_reverse_tcp, windows/x64/shell_reverse_tcp).
 
 # C Payload
 ## Staged
+```
 - windows/x64/meterpreter/reverse_https 
 - windows/x64/meterpreter/reverse_http
 - windows/x64/meterpreter/reverse_tcp
@@ -46,7 +46,9 @@ windows/x64/meterpreter_reverse_tcp, windows/x64/shell_reverse_tcp).
 - windows/x86/meterpreter/reverse_http
 - windows/x86/meterpreter/reverse_tcp
 - windows/x86/shell/reverse_tcp
+```
 ## Stageless
+```
 - windows/x64/meterpreter_reverse_https
 - windows/x64/meterpreter_reverse_http
 - windows/x64/meterpreter_reverse_tcp 
@@ -55,3 +57,4 @@ windows/x64/meterpreter_reverse_tcp, windows/x64/shell_reverse_tcp).
 - windows/x86/meterpreter_reverse_http
 - windows/x86/meterpreter_reverse_tcp
 - windows/x86/shell_reverse_tcp
+```
