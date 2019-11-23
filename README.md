@@ -10,9 +10,9 @@ It also contains evasion functions that the user can configure himself.
 # Version 1.2
 New features:
 ```
-1- 
-1- Restructured source code.
-2- Bug correction.
+1- You can choose either "Local Thread Shellcode Injection" or "Remote Thread Shellcode Injection".
+2- Restructured source code.
+3- Bug correction.
 ```
 
 # Requirements
