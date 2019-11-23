@@ -26,14 +26,11 @@ New features:
 2. python3 AccessMe.py
 ```
 # Features
-```
 - x86 and x64 staged payload meterpreter and shell.
 - x86 and x64 stageless payload meterpreter and shell.
 - Cross-compiler MinGW.
 - Polymorphic C source code.
 - Strip with MinGW
--
-```
 
 # C Payload
 ## Staged
