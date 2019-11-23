@@ -42,6 +42,7 @@ New features:
 - windows/x64/meterpreter/reverse_http
 - windows/x64/meterpreter/reverse_tcp
 - windows/x64/shell/reverse_tcp
+
 - windows/x86/meterpreter/reverse_https 
 - windows/x86/meterpreter/reverse_http
 - windows/x86/meterpreter/reverse_tcp
@@ -53,6 +54,7 @@ New features:
 - windows/x64/meterpreter_reverse_http
 - windows/x64/meterpreter_reverse_tcp 
 - windows/x64/shell_reverse_tcp
+
 - windows/x86/meterpreter_reverse_https 
 - windows/x86/meterpreter_reverse_http
 - windows/x86/meterpreter_reverse_tcp
