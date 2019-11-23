@@ -26,3 +26,32 @@ New features:
 2. python3 AccessMe.py
 ```
 ## Features
+```
+- x86 and x64 staged payload meterpreter.
+- x86 and x64 stageless payload meterpreter (windows/x64/meterpreter_reverse_https, windows/x64/meterpreter_reverse_http, 
+windows/x64/meterpreter_reverse_tcp, windows/x64/shell_reverse_tcp).
+- Cross-compiler MinGW.
+- Polymorphic C source code.
+- Strip with MinGW
+-
+```
+
+## C Payload
+# Staged
+- windows/x64/meterpreter/reverse_https 
+- windows/x64/meterpreter/reverse_http
+- windows/x64/meterpreter/reverse_tcp
+- windows/x64/shell/reverse_tcp
+- windows/x86/meterpreter/reverse_https 
+- windows/x86/meterpreter/reverse_http
+- windows/x86/meterpreter/reverse_tcp
+- windows/x86/shell/reverse_tcp
+# Stageless
+- windows/x64/meterpreter_reverse_https
+- windows/x64/meterpreter_reverse_http
+- windows/x64/meterpreter_reverse_tcp 
+- windows/x64/shell_reverse_tcp
+- windows/x86/meterpreter_reverse_https 
+- windows/x86/meterpreter_reverse_http
+- windows/x86/meterpreter_reverse_tcp
+- windows/x86/shell_reverse_tcp
