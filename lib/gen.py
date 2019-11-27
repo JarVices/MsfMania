@@ -186,7 +186,6 @@ def Gen_Shellcode(STAGED, ARCH, PROTOCOLE, TYPE, LHOST, LPORT):
                     SHELLCODE = Unnecessary_Characters(PAYLOAD)
                     core.Clear()
                     print(core.amcolors.GREEN + core.amcolors.BOLD + "[+] Shellcode generated." + core.amcolors.ENDC)
-                    print("bite")
                     return SHELLCODE
 
 
@@ -234,8 +233,8 @@ def Auto_Compiler(FILENAME, ARCH, PLATFORM, ICON):
                 EXE = ['x86_64-w64-mingw32-gcc', 'source.c', 'icon/AccessMe.res', '-s', '-o', FILENAME,'-mwindows']
                 subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-                #RM_SourceFile = ['rm', 'source.c']
-                #subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+                RM_SourceFile = ['rm', 'source.c']
+                subprocess.run(RM_SourceFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
                 RM_RcFile = ['rm', 'icon/AccessMe.rc']
                 subprocess.run(RM_RcFile, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
