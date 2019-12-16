@@ -1,8 +1,8 @@
-# NsfVenom
+# MsfMania
 
 ## Python AV Evasion Tools
 
-NsfVenom is a command line tool, developed in Python, which aims to be able to generate executables (32/64 bits) containing a Metasploit or other payload. 
+MsfMania is a command line tool, developed in Python, which aims to be able to generate executables (32/64 bits) containing a Metasploit or other payload. 
 When generating the payload with Msfvenom, the output is incremented in a polymorphic code in C language. 
 The main objective being antivirus evasion, this code contains random functions allowing it. 
 It also contains evasion functions that the user can configure himself.
