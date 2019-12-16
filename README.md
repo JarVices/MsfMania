@@ -25,7 +25,7 @@ New features:
 ## Usage
 ```
 1. python3 setup.py (Execute only one times)
-2. python3 NsfVenom.py
+2. python3 MsfMania.py
 ```
 
 ## Features
