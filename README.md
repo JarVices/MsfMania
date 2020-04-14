@@ -1,16 +1,21 @@
-# MsfMania (public version)
+# MsfMania
 
-MsfMania is a command line tool, developed in Python, which aims to be able to generate executables (32/64 bits) containing a Metasploit or other payload. 
-When generating the payload with Msfvenom, the output is incremented in a polymorphic code in C language. 
-The main objective being antivirus evasion, this code contains random functions allowing it. 
-It also contains evasion functions that the user can configure himself.
+MsfMania is a command line tool developed in Python, allowing to automatically produce a source code in C language that will be used to bypass antimalware before executing a metasploit payload.
 
-## Version 1.2
+Version 2.0 is the last one because the hunt for as much FUD as possible is not possible when it comes to open source tools. 
+Indeed the argument "Don't send to VirusTotal.com" is not effective, often skids want to send the generated payload to infinity on the site to see if the payload is indeed FUD, except that it is a vicious circle.
+This tool will be further developed if you offer me important additions or bug reports.
+
+## Version 2.0
 New features:
 ```
-1- You can choose either "Local Thread Shellcode Injection" or "Remote Thread Shellcode Injection".
+1- Redesign of the graphic charter, banners, exit messages, etc...
 2- Restructured source code.
 3- Bug correction.
+4- Open source license added.
+5- Removed predefined payload files and added support to choose any Windows payload available in MsfVenom.
+6- MsfMania is 99% scalable.
+7- "AccessMe" becomes "MsfMania".
 ```
 
 ## Requirements
@@ -32,33 +37,6 @@ New features:
 - Cross-compiler MinGW.
 - Polymorphic C source code.
 - Strip with MinGW.
-- Customize the executable with an icon.
+- Executable customizable with an icon.
 - Local/Remote Thread Shellcode Injection
-- Sandbox Evasion 
-- Antivirus Evasion
-
-## C Payload
-### Staged
-```
-- windows/x64/meterpreter/reverse_https 
-- windows/x64/meterpreter/reverse_http
-- windows/x64/meterpreter/reverse_tcp
-- windows/x64/shell/reverse_tcp
-
-- windows/x86/meterpreter/reverse_https 
-- windows/x86/meterpreter/reverse_http
-- windows/x86/meterpreter/reverse_tcp
-- windows/x86/shell/reverse_tcp
-```
-### Stageless
-```
-- windows/x64/meterpreter_reverse_https
-- windows/x64/meterpreter_reverse_http
-- windows/x64/meterpreter_reverse_tcp 
-- windows/x64/shell_reverse_tcp
-
-- windows/x86/meterpreter_reverse_https 
-- windows/x86/meterpreter_reverse_http
-- windows/x86/meterpreter_reverse_tcp
-- windows/x86/shell_reverse_tcp
-```
+- Sandbox/Antivirus Evasion
