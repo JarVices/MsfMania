@@ -1,4 +1,4 @@
-from lib import evasion, body, compiler, compression, core, decoy, gen, metascript, encryption
+from lib import evasion, body, compiler, compression, core, decoy, gen, metascript
 
 TYPE = ""
 ARCHITECTURE = ""
