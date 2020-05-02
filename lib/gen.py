@@ -1,4 +1,4 @@
-from lib import core, encryption
+from lib import core
 import random
 import subprocess
 
