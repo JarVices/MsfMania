@@ -9,14 +9,16 @@ This tool will be further developed if you offer me important additions or bug r
 ## Version 2.1
 New features:
 ```
+1- New usage method
+2- Perfomance increase
+3- User interaction removed
+4- Hardest loop usage removed
 ```
 
 ## Requirements
-```
-1. Latest version of Kali Linux
-2. The kali-rolling repository
-3. Python3
-```
+- Latest version of Kali Linux
+- The kali-rolling repository
+- Python3
 
 ## Installation
 - Git clone this repository: ```git clone https://github.com/G1ft3dC0d3/MsfMania.git```
@@ -24,6 +26,9 @@ New features:
 - Run MsfMania setup: ```python3 setup.py```
 
 ## Usage
+```
+python3 MsfMania.py -h
+```
 
 
 ## Features
