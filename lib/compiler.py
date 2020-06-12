@@ -2,19 +2,9 @@ from lib import core
 import subprocess
 
 
-def ADD_ICON():
-    core.ICON()
-
-    ICON = core.CORE_INPUT()
-
-    return ICON
-
-
 def AUTO_COMPILE(FILENAME, ARCHITECTURE, ICON):
-    if ARCHITECTURE == "X64":
+    if ARCHITECTURE == "x64":
         if ICON != "":
-
-            core.COMPILATION_STARTED()
 
             RC = 'id ICON "icon/'
             RC += ''.join((ICON, '"\n'))
@@ -41,8 +31,6 @@ def AUTO_COMPILE(FILENAME, ARCHITECTURE, ICON):
 
         else:
 
-            core.COMPILATION_STARTED()
-
             EXE = ['x86_64-w64-mingw32-gcc', 'source.c', '-s', '-w', '-o', FILENAME]
             subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
@@ -51,10 +39,8 @@ def AUTO_COMPILE(FILENAME, ARCHITECTURE, ICON):
 
             core.COMPILATION_COMPLETED()
 
-    elif ARCHITECTURE == "X86":
+    elif ARCHITECTURE == "x86":
         if ICON != "":
-
-            core.COMPILATION_STARTED()
 
             RC = 'id ICON "icon/'
             RC += ''.join((ICON, '"\n'))
@@ -80,8 +66,6 @@ def AUTO_COMPILE(FILENAME, ARCHITECTURE, ICON):
             core.COMPILATION_COMPLETED()
 
         else:
-
-            core.COMPILATION_STARTED()
 
             EXE = ['i686-w64-mingw32-gcc', 'source.c', '-s', '-w', '-o', FILENAME]
             subprocess.run(EXE, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')

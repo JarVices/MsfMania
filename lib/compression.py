@@ -3,29 +3,14 @@ import subprocess, os
 
 
 def RAR(FILENAME):
-    core.RAR_COMPRESSION()
+    os.chdir("output/")
 
-    CR = core.CORE_INPUT()
+    ARCHIVE = FILENAME.replace('.exe', '.rar')
+    ARCHIVE = ARCHIVE.replace('output/', '')
 
-    if CR == "1":
+    FILENAME = FILENAME.replace('output/', '')
 
-        pass
+    COMPRESS = ['rar', 'a', '-m5', ARCHIVE, FILENAME]
+    subprocess.run(COMPRESS, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-    elif CR == "2":
-
-        core.RAR_COMPRESSING()
-
-        os.chdir("output/")
-
-        ARCHIVE = FILENAME.replace('.exe', '.rar')
-        ARCHIVE = ARCHIVE.replace('output/', '')
-
-        FILENAME = FILENAME.replace('output/', '')
-
-        COMPRESS = ['rar', 'a', '-m5', ARCHIVE, FILENAME]
-        subprocess.run(COMPRESS, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
-
-        core.RAR_COMPRESSED()
-
-    else:
-        pass
+    core.RAR_COMPRESSED()

