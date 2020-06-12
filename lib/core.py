@@ -24,7 +24,7 @@ def BANNER():
                 ██║╚██╔╝██║╚════██║██╔══╝  ██║╚██╔╝██║██╔══██║██║╚██╗██║██║██╔══██║
                 ██║ ╚═╝ ██║███████║██║     ██║ ╚═╝ ██║██║  ██║██║ ╚████║██║██║  ██║
                 ╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝                                                                                                                                                                                                                   
-            Version : 2.0   -   Author : Killian CASAROTTO   -  Updated : March 1, 2020           
+            Version : 2.1   -   Author : Killian CASAROTTO   -  Updated : June 12, 2020           
     """ + MMCOLORS.ENDC)
 
 
