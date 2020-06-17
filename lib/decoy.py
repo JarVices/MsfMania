@@ -2,38 +2,38 @@ from lib import core
 import random
 
 
-def FAKE_U(VALUE):
+def fake_u(value):
 
-    NUMBER_OF_DECOY = VALUE
+    number_of_decoy = value
 
-    if NUMBER_OF_DECOY != "":
+    if number_of_decoy != "":
 
-        TRANSFORM_TO_INT = int(NUMBER_OF_DECOY)
+        transform_to_int = int(number_of_decoy)
 
-        NUMBER_OF_DECOY = 0
-        DECOY_CODE = ""
+        number_of_decoy = 0
+        decoy_code = ""
 
-        while NUMBER_OF_DECOY != TRANSFORM_TO_INT:
-            NUMBER_OF_DECOY += 1
+        while number_of_decoy != transform_to_int:
+            number_of_decoy += 1
 
-            MEMDMP1 = core.VARNAME_CREATOR()
-            TAC1 = core.VARNAME_CREATOR()
-            TICK1 = core.VARNAME_CREATOR()
+            memdmp1 = core.varname_creator()
+            tac1 = core.varname_creator()
+            tick1 = core.varname_creator()
 
-            MEMDMP1_VALUE = str(random.randint(70000000, 130000000))
-            DECOY_CODE += "char * " + MEMDMP1 + "= NULL;\n"
-            DECOY_CODE += MEMDMP1 + " = (char *)malloc(" + MEMDMP1_VALUE + ");\n"
-            DECOY_CODE += "if (" + MEMDMP1 + " != NULL) {\n"
-            DECOY_CODE += "memset(" + MEMDMP1 + ", 00, " + MEMDMP1_VALUE + ");}\n"
-            DECOY_CODE += "int " + TICK1 + " = GetTickCount();\n"
-            DECOY_CODE += "Sleep(1000);\n"
-            DECOY_CODE += "int " + TAC1 + " = GetTickCount();\n"
-            DECOY_CODE += "if ((" + TAC1 + " - " + TICK1 + ") < 1000) {exit(0);}\n"
-            DECOY_CODE += "free(" + MEMDMP1 + ");\n\n"
+            memdmp1_value = str(random.randint(70000000, 130000000))
+            decoy_code += "char * " + memdmp1 + "= NULL;\n"
+            decoy_code += memdmp1 + " = (char *)malloc(" + memdmp1_value + ");\n"
+            decoy_code += "if (" + memdmp1 + " != NULL) {\n"
+            decoy_code += "memset(" + memdmp1 + ", 00, " + memdmp1_value + ");}\n"
+            decoy_code += "int " + tick1 + " = GetTickCount();\n"
+            decoy_code += "Sleep(1000);\n"
+            decoy_code += "int " + tac1 + " = GetTickCount();\n"
+            decoy_code += "if ((" + tac1 + " - " + tick1 + ") < 1000) {exit(0);}\n"
+            decoy_code += "free(" + memdmp1 + ");\n\n"
 
-        core.DECOY_ADDED()
+        core.decoy_added()
 
-        return DECOY_CODE
+        return decoy_code
 
-    elif NUMBER_OF_DECOY == "":
-        return 'printf("nothing");\n'
+    elif number_of_decoy == "":
+        return str('printf("' + core.varname_creator() + '");\n')

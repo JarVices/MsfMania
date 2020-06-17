@@ -1,77 +1,93 @@
-import os
 import random
 import string
+from shutil import which
 from random import randrange
+import subprocess
+
+class MmColors:
+    blue = '\033[94m'
+    green = '\033[92m'
+    ocra = '\033[93m'
+    red = '\033[91m'
+    endc = '\033[0m'
+    bold = '\033[1m'
+    underline = '\033[4m'
+    darkcyan = '\033[36m'
 
 
-class MMCOLORS:
-    BLUE = '\033[94m'
-    GREEN = '\033[92m'
-    OCRA = '\033[93m'
-    RED = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-    DARKCYAN = '\033[36m'
-
-
-def BANNER():
+def banner():
     # Univers ASCII banner
-    print(MMCOLORS.BOLD + """                                                                                            
+    print(MmColors.bold + """                                                                                            
                 ███╗   ███╗███████╗███████╗███╗   ███╗ █████╗ ███╗   ██╗██╗ █████╗ 
                 ████╗ ████║██╔════╝██╔════╝████╗ ████║██╔══██╗████╗  ██║██║██╔══██╗
                 ██╔████╔██║███████╗█████╗  ██╔████╔██║███████║██╔██╗ ██║██║███████║
                 ██║╚██╔╝██║╚════██║██╔══╝  ██║╚██╔╝██║██╔══██║██║╚██╗██║██║██╔══██║
                 ██║ ╚═╝ ██║███████║██║     ██║ ╚═╝ ██║██║  ██║██║ ╚████║██║██║  ██║
                 ╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝                                                                                                                                                                                                                   
-            Version : 2.1   -   Author : Killian CASAROTTO   -  Updated : June 12, 2020           
-    """ + MMCOLORS.ENDC)
+            Version : 2.2   -   Author : Killian CASAROTTO   -  Updated : June 18, 2020           
+    """ + MmColors.endc)
 
 
-def CLEAR():
-    os.system("clear")
+def check_requirements():
+    required = ["x86_64-w64-mingw32-windres", "x86_64-w64-mingw32-gcc", "i686-w64-mingw32-windres", "i686-w64-mingw32-gcc", "rar", "msfvenom"]
+    to_install = ["mingw-w64", "rar", "metasploit-framework"]
+    not_installed = []
+    for i in required:
+        a = which(i)
+        if a is None:
+            print(MmColors.red + MmColors.bold + "[x] >>> '" + i + "' is not installed." + MmColors.endc)
+            not_installed.append(i)
+
+    if len(not_installed) != 0:
+        for package in to_install:
+            subprocess.call(['apt-get', '-y', 'install', package])
 
 
-def VARNAME_CREATOR():
-    VARNAME = ''.join(random.SystemRandom().choice(string.ascii_letters) for _ in range(random.randint(25, 50)))
+
+def error_injectionType():
+    print(MmColors.red + MmColors.bold + "[x] >>> 'Remote' injection only works with x64 architectures. " + MmColors.ocra + "Changing the parameter to 'local'." + MmColors.endc)
+
+
+def varname_creator():
+    VARNAME = ''.join(random.SystemRandom().choice(string.ascii_lowercase) for _ in range(random.randint(8, 12)))
     return VARNAME
 
 
-def INT_CREATOR():
+def int_creator():
     INT = str(randrange(479844, 89745632))
     return INT
 
 
-def MODULE_CHOICE():
-    print(MMCOLORS.BLUE + MMCOLORS.BOLD + "\n[?] >>> " + MMCOLORS.ENDC + MMCOLORS.GREEN + MMCOLORS.BOLD + "[1] Windows Payloads - [0] Exit Software;" + MMCOLORS.ENDC)
+def shellcode_generated():
+    print(MmColors.green + MmColors.bold + "[+] >>> Shellcode generated." + MmColors.endc)
 
 
-def SHELLCODE_GENERATED():
-    print(MMCOLORS.GREEN + MMCOLORS.BOLD + "[+] >>> Shellcode generated." + MMCOLORS.ENDC)
+def shellcode_encrypted():
+    print(MmColors.green + MmColors.bold + "[+] >>> Shellcode encrypted." + MmColors.endc)
 
 
-def DECOY_ADDED():
-    print(MMCOLORS.GREEN + MMCOLORS.BOLD + "[+] >>> Decoy code added." + MMCOLORS.ENDC)
+def decoy_added():
+    print(MmColors.green + MmColors.bold + "[+] >>> Decoy code added." + MmColors.endc)
 
 
-def EVASION_ADDED():
-    print(MMCOLORS.GREEN + MMCOLORS.BOLD + "[+] >>> Evasion code added." + MMCOLORS.ENDC)
+def evasion_added():
+    print(MmColors.green + MmColors.bold + "[+] >>> Evasion code added." + MmColors.endc)
 
 
-def COMPILATION_COMPLETED():
-    print(MMCOLORS.GREEN + MMCOLORS.BOLD + "[+] >>> File compiled and stripped." + MMCOLORS.ENDC)
+def compilation_completed():
+    print(MmColors.green + MmColors.bold + "[+] >>> File compiled and stripped." + MmColors.endc)
 
 
-def RAR_COMPRESSED():
-    print(MMCOLORS.GREEN + MMCOLORS.BOLD + "[+] >>> Exe file compressed to RAR file." + MMCOLORS.ENDC)
+def rar_compressed():
+    print(MmColors.green + MmColors.bold + "[+] >>> Exe file compressed to RAR file." + MmColors.endc)
 
 
-def VIRUSTOTAL():
-    print(MMCOLORS.RED + MMCOLORS.BOLD + """
+def virustotal():
+    print(MmColors.red + MmColors.bold + """
 ██████╗  ██████╗     ███╗   ██╗ ██████╗ ████████╗    ███████╗███████╗███╗   ██╗██████╗      ██████╗ ███╗   ██╗    ██╗   ██╗██╗██████╗ ██╗   ██╗███████╗████████╗ ██████╗ ████████╗ █████╗ ██╗     
 ██╔══██╗██╔═══██╗    ████╗  ██║██╔═══██╗╚══██╔══╝    ██╔════╝██╔════╝████╗  ██║██╔══██╗    ██╔═══██╗████╗  ██║    ██║   ██║██║██╔══██╗██║   ██║██╔════╝╚══██╔══╝██╔═══██╗╚══██╔══╝██╔══██╗██║     
 ██║  ██║██║   ██║    ██╔██╗ ██║██║   ██║   ██║       ███████╗█████╗  ██╔██╗ ██║██║  ██║    ██║   ██║██╔██╗ ██║    ██║   ██║██║██████╔╝██║   ██║███████╗   ██║   ██║   ██║   ██║   ███████║██║     
 ██║  ██║██║   ██║    ██║╚██╗██║██║   ██║   ██║       ╚════██║██╔══╝  ██║╚██╗██║██║  ██║    ██║   ██║██║╚██╗██║    ╚██╗ ██╔╝██║██╔══██╗██║   ██║╚════██║   ██║   ██║   ██║   ██║   ██╔══██║██║     
 ██████╔╝╚██████╔╝    ██║ ╚████║╚██████╔╝   ██║       ███████║███████╗██║ ╚████║██████╔╝    ╚██████╔╝██║ ╚████║     ╚████╔╝ ██║██║  ██║╚██████╔╝███████║   ██║   ╚██████╔╝   ██║   ██║  ██║███████╗
 ╚═════╝  ╚═════╝     ╚═╝  ╚═══╝ ╚═════╝    ╚═╝       ╚══════╝╚══════╝╚═╝  ╚═══╝╚═════╝      ╚═════╝ ╚═╝  ╚═══╝      ╚═══╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝    ╚═╝   ╚═╝  ╚═╝╚══════╝                                                                                                                                                                                               
-    """ + MMCOLORS.ENDC)
+    """ + MmColors.endc)

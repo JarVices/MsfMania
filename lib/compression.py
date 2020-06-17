@@ -2,15 +2,15 @@ from lib import core
 import subprocess, os
 
 
-def RAR(FILENAME):
+def rar(filename):
     os.chdir("output/")
 
-    ARCHIVE = FILENAME.replace('.exe', '.rar')
-    ARCHIVE = ARCHIVE.replace('output/', '')
+    archive = filename.replace('.exe', '.rar')
+    archive = archive.replace('output/', '')
 
-    FILENAME = FILENAME.replace('output/', '')
+    filename = filename.replace('output/', '')
 
-    COMPRESS = ['rar', 'a', '-m5', ARCHIVE, FILENAME]
-    subprocess.run(COMPRESS, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
+    compress = ['rar', 'a', '-m5', archive, filename]
+    subprocess.run(compress, shell=False, stdout=subprocess.PIPE).stdout.decode('utf-8')
 
-    core.RAR_COMPRESSED()
+    core.rar_compressed()
