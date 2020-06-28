@@ -4,6 +4,8 @@ MsfMania is a command line tool developed in Python, allowing to automatically p
 ## Note that
 I don't put an example of use so that the skids don't know how to use the tool. They will have to do without a basic tutorial ;p.
 I leave only 4 sandbox escape functions because too many sandboxes kill the sandbox. I tried to put 18 then 12 then 4 and the result is better. It is necessary to look for new techniques and for a public tool I would prefer to keep things still unknown.
+I didn't put anything to disable Windows Defender, I had tried during 24 hours of research but even with the system rights, it is not possible to stop the windefend service or even prevent it from starting (via a command line).
+I also tried to add 3 persistence modes. But I thought at the end that it was better for a pentester not to automate this task :)
 I thank @oddc0de for its junkcode functions < 3.
 I thank @paranoidninja for its CarbonCopy tool.
 
