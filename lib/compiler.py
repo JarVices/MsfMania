@@ -1,57 +1,44 @@
 from lib import core
-import subprocess
-import os
-import random
+from os import system, path, chdir
+from subprocess import check_call, PIPE
+from random import randint
 
 
 def auto_compile(filename, architecture, icon, require_admin):
+    compiler = []
     if architecture == "x64":
-        if icon != "":
+        compiler += ["x86_64-w64-mingw32-windres", "x86_64-w64-mingw32-g++"]
+    else:
+        compiler += ["i686-w64-mingw32-windres", "i686-w64-mingw32-g++"]
 
-            rc = 'id ICON "icon/' + ''.join((icon, '"\n'))
-            rc += rc_info_maker(filename, require_admin)
+    rc = ""
+    if icon != "":
+        rc += 'id ICON "icon/' + ''.join((icon, '"\n'))
+        rc += rc_info_maker(filename, require_admin)
+    else:
+        rc += rc_info_maker(filename, require_admin)
 
-            with open('tmp/MsfMania.rc', 'w') as f:
-                f.write(rc)
+    with open('tmp/MsfMania.rc', 'w') as f:
+        f.write(rc)
 
-            os.system(f"x86_64-w64-mingw32-windres tmp/MsfMania.rc -O coff -o tmp/MsfMania.res && x86_64-w64-mingw32-gcc tmp/source.c tmp/MsfMania.res -s -w -o {filename} && rm tmp/*")
+    system(f"{compiler[0]} tmp/MsfMania.rc -O coff -o tmp/MsfMania.res && {compiler[1]} tmp/source.cpp tmp/MsfMania.res -s -w -o {filename} && rm -rf tmp/")
+    core.compilation_completed()
+    file_size = path.getsize(filename)
+    core.file_size(file_size)
 
-            core.compilation_completed()
 
-        else:
+def rar(filename):
+    chdir("output/")
 
-            rc = rc_info_maker(filename, require_admin)
+    archive = filename.replace('.exe', '.rar')
+    archive = archive.replace('output/', '')
 
-            with open('tmp/MsfMania.rc', 'w') as f:
-                f.write(rc)
+    filename = filename.replace('output/', '')
 
-            os.system(f"x86_64-w64-mingw32-windres tmp/MsfMania.rc -O coff -o tmp/MsfMania.res && x86_64-w64-mingw32-gcc tmp/source.c tmp/MsfMania.res -s -w -o {filename} && rm tmp/*")
+    compress = ['rar', 'a', '-m5', archive, filename]
+    check_call(compress, stdout=PIPE)
 
-            core.compilation_completed()
-
-    elif architecture == "x86":
-        if icon != "":
-
-            rc = 'id ICON "icon/' + ''.join((icon, '"\n'))
-            rc += rc_info_maker(filename, require_admin)
-
-            with open('tmp/MsfMania.rc', 'w') as f:
-                f.write(rc)
-
-            os.system(f"i686-w64-mingw32-windres tmp/MsfMania.rc -O coff -o tmp/MsfMania.res && i686-w64-mingw32-gcc tmp/source.c tmp/MsfMania.res -s -w -o {filename} && rm tmp/*")
-
-            core.compilation_completed()
-
-        else:
-
-            rc = rc_info_maker(filename, require_admin)
-
-            with open('tmp/MsfMania.rc', 'w') as f:
-                f.write(rc)
-
-            os.system(f"i686-w64-mingw32-windres tmp/MsfMania.rc -O coff -o tmp/MsfMania.res && i686-w64-mingw32-gcc tmp/source.c tmp/MsfMania.res -s -w -o {filename} && rm tmp/*")
-
-            core.compilation_completed()
+    core.rar_compressed()
 
 
 def rc_info_maker(filename, require_admin):
@@ -63,20 +50,20 @@ def rc_info_maker(filename, require_admin):
         admin_privs(filename)
 
     rc_info += "1 VERSIONINFO\n"
-    rc_info += "FILEVERSION     " + str(rc_version()) + "," + str(rc_version()) + "," + str(rc_version()) + "\n"
-    rc_info += "PRODUCTVERSION  " + str(rc_version()) + "," + str(rc_version()) + "," + str(rc_version()) + "\n"
+    rc_info += "FILEVERSION     " + str(rc_version()) + "," + str(rc_version()) + "\n"
+    rc_info += "PRODUCTVERSION  " + str(rc_version()) + "," + str(rc_version()) + "\n"
     rc_info += "BEGIN\n" + 'BLOCK "StringFileInfo"\n'
     rc_info += "BEGIN\n"
     rc_info += 'BLOCK "080904E4"\n'
     rc_info += 'BEGIN\n'
     rc_info += 'VALUE "CompanyName", "' + str(core.varname_creator()) + '"\n'
     rc_info += 'VALUE "FileDescription", "' + str(core.varname_creator()) + '"\n'
-    rc_info += 'VALUE "FileVersion", "' + str(rc_version()) + "." + str(rc_version()) + "." + str(rc_version()) + "." + str(rc_version()) + "." + str(rc_version()) + "." + str(rc_version()) + "." + str(rc_version()) + '"\n'
+    rc_info += 'VALUE "FileVersion", "' + str(rc_version()) + "." + str(rc_version()) + '"\n'
     rc_info += 'VALUE "InternalName", "' + str(core.varname_creator()) + '"\n'
     rc_info += 'VALUE "LegalCopyright", "' + str(core.varname_creator()) + '"\n'
     rc_info += 'VALUE "OriginalFilename", "' + str(core.varname_creator()) + '"\n'
     rc_info += 'VALUE "ProductName", "' + str(core.varname_creator()) + '"\n'
-    rc_info += 'VALUE "ProductVersion", "' + str(rc_version()) + "." + str(rc_version()) + "." + str(rc_version()) + "." + str(rc_version()) + "." + str(rc_version()) + "." + str(rc_version()) + "." + str(rc_version()) + '"\n'
+    rc_info += 'VALUE "ProductVersion", "' + str(rc_version()) + "." + str(rc_version()) + '"\n'
     rc_info += 'END\n'
     rc_info += 'END\n'
     rc_info += 'BLOCK "VarFileInfo"\n'
@@ -88,7 +75,7 @@ def rc_info_maker(filename, require_admin):
 
 
 def rc_version():
-    var_rc_version = str(random.randint(1, 999))
+    var_rc_version = str(randint(1, 999))
     return var_rc_version
 
 
