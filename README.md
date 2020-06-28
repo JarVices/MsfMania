@@ -7,8 +7,6 @@ I leave only 4 sandbox escape functions because too many sandboxes kill the sand
 I thank @oddc0de for its junkcode functions < 3.
 I thank @paranoidninja for its CarbonCopy tool.
 
-Translated with www.DeepL.com/Translator (free version)
-
 ## Version 2.3
 New features:
 ```
