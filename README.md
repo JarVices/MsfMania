@@ -42,3 +42,4 @@ python3 MsfMania.py -h
 - Strip executable.
 - Rar compression.
 - Autorun Metasploit config
+- Sign executable with spoofed certificate
