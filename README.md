@@ -1,5 +1,5 @@
 # MsfMania
-MsfMania is a command line tool developed in Python, allowing to automatically produce a source code in C language that will be used to bypass antimalware before executing a metasploit payload.
+MsfMania is a command line tool developed in Python that is designed to bypass antivirus software on Windows.
 
 ![alt text](https://github.com/G1ft3dC0d3/MsfMania/blob/master/VirusTotal.png)
 
