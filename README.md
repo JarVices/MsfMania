@@ -62,4 +62,4 @@ python3 MsfMania.py -h
 
 ## Donations
 ![alt text](https://agile-manufacturing.com/wp-content/uploads/2019/10/Bitcoin-Accepted-3x1-2-1.jpg)
-==> 1KC8thR6jJXpSk21UyEc6bsZHBjdXgCaU4
+1KC8thR6jJXpSk21UyEc6bsZHBjdXgCaU4
