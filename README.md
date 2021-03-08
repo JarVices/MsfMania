@@ -57,5 +57,5 @@ python3 MsfMania.py -h
 - Rar compression.
 - Autorun Metasploit config
 - Sign executable with spoofed certificate
-- UPX
+- UPX Packer
 - FUD
