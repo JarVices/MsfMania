@@ -37,7 +37,7 @@ def banner():
                 ██║╚██╔╝██║╚════██║██╔══╝  ██║╚██╔╝██║██╔══██║██║╚██╗██║██║██╔══██║
                 ██║ ╚═╝ ██║███████║██║     ██║ ╚═╝ ██║██║  ██║██║ ╚████║██║██║  ██║
                 ╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝                                                                                                                                                                                                                   
-             Version : 2.4   -   Author : Killian CASAROTTO   -  Updated : dev version           
+             Version : 2.4   -   Author : Killian CASAROTTO   -  Updated : 08/03/2021           
     """ + endc)
 
 
