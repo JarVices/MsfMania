@@ -44,9 +44,9 @@ python3 MsfMania.py -h
 ## Features
 - Polymorphic C/C++ source code.
 - x86/x64 staged/stageless windows payload meterpreter/shell.
-- LocalThreadInjection
-- CreateRemoteThread Shellcode Injection
-- Remote Process Shellcode Injection via Thread Hijacking
+- LocalThread Injection
+- CreateRemoteThread Injection
+- ThreadHijacking Injection
 - XOR encryption based key lenght.
 - Sandbox/Antivirus Evasion.
 - Junkcode.
