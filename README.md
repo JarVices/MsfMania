@@ -5,26 +5,15 @@ MsfMania is a command line tool developed in Python that is designed to bypass a
 
 ![alt text](https://github.com/G1ft3dC0d3/MsfMania/blob/master/MsfMania.png)
 
-## Version 2.4
-New features:
-```
-X- Summary: the 64bit payloads are FUD, the payloads in 32bit I have several ideas to make them undetectable but if you have some I am a taker.
-1- Code fully reviewed and redrafted.
-2- 32bit payloads can now be executed in remote processes.
-3- Junkcode injector reviewed.
-4- The xor encryption stub has changed.
-5- Added UPX packer.
-6- Enhanced escape module.
-7- You can now get a hash of your payload (MD5/SHA256).
-8- New injection method (Thread Hijacking).
-9- Deleted post-processing module.
-
-I have lots of feature ideas coming soon, but I'd like to do it cleanly so I'm taking my time. 
-I sent the update to show that I still maintain MsfMania, with undetectable 64bit payloads and soon the 32bit.
-There will certainly be payloads other than Executable Laptops, I would like to diversify.
-Powershell payloads, Metasploit scripts, and so on.
-Don't hesitate to give me ideas!
-```
+## Summary
+* [Requirements](#Requirements)
+* [Installation](#Installation)
+* [Usage](#Usage)
+* [Free version features](#Free-version-features)
+* [PRO version](#PRO-version)
+  * [Informations](#Informations)
+  * [PRO version features](#PRO-version-features)
+* [Donations](#Donations)
 
 ## Requirements
 - Latest version of Kali Linux
@@ -41,7 +30,7 @@ Don't hesitate to give me ideas!
 python3 MsfMania.py -h
 ```
 
-## Features
+## Free version features
 - Polymorphic C/C++ source code.
 - x86/x64 staged/stageless windows payload meterpreter/shell.
 - LocalThread Injection
@@ -59,6 +48,27 @@ python3 MsfMania.py -h
 - Sign executable with spoofed certificate
 - UPX Packer
 - FUD
+
+# PRO version
+## Informations
+Recently I noticed that my tool, MsfMania, has started to become popular and is being shared on skid forums. This was to be expected.
+So I know that the tool that is currently FUD, will not remain so forever. 
+And that trying to make updates because people send it to VirusTotal will not be useful.
+
+So I decided to create the PRO version of MsfMania. Which not only contains a tool to make msfvenom payloads undetectable. 
+I plan to make this tool a real cyber weapon dedicated to Red-Teaming.
+
+To contact me : 
+G1ft3dC0d3 [a,t] protonmail [d,o,t] com
+
+## PRO version features
+- FUD features of MsfMania public version
+- Undetected local and remote injection
+- AntiSandbox, AntiVM, AntiAnalysis, AntiDump, AntiDisassm, AntiDebug functions
+- PE Loader creator
+- Advanced privilege escalation
+- Advanced persistence
+- Customer support, Subscription to new versions, Customized request
 
 ## Donations
 ![alt text](https://agile-manufacturing.com/wp-content/uploads/2019/10/Bitcoin-Accepted-3x1-2-1.jpg)
