@@ -70,6 +70,7 @@ G1ft3dC0d3 [a,t] protonmail [d,o,t] com
 - Custom command
 - Advanced privilege escalation
 - Advanced persistence
+- User's manual
 - Customer support, Subscription to new versions, Customized request
 
 ## Donations
