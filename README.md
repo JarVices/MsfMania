@@ -66,6 +66,8 @@ G1ft3dC0d3 [a,t] protonmail [d,o,t] com
 - Undetected local and remote injection
 - AntiSandbox, AntiVM, AntiAnalysis, AntiDump, AntiDisassm, AntiDebug functions
 - PE Loader creator
+- Custom shellcode
+- Custom command
 - Advanced privilege escalation
 - Advanced persistence
 - Customer support, Subscription to new versions, Customized request
