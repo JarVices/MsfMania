@@ -10,7 +10,7 @@ MsfMania is a command line tool developed in Python that is designed to bypass a
 * [Installation](#Installation)
 * [Usage](#Usage)
 * [Free version features](#Free-version-features)
-* [PRO/Custom version](#PRO/Custom-version)
+* [PRO & Custom version](#PRO-&-Custom-version)
   * [Informations](#Informations)
   * [PRO version features](#PRO-version-features)
 * [Donations](#Donations)
@@ -49,7 +49,7 @@ python3 MsfMania.py -h
 - UPX Packer
 - FUD
 
-# PRO/Custom version
+# PRO & Custom version
 ## Informations
 Recently I noticed that my tool, MsfMania, has started to become popular and is being shared on skid forums. This was to be expected.
 So I know that the tool that is currently FUD, will not remain so forever. 
