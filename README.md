@@ -63,14 +63,14 @@ G1ft3dC0d3 [a,t] protonmail [d,o,t] com
 
 ## PRO version features
 - FUD features of MsfMania public version
-- Undetected local and remote injection
-- AntiSandbox, AntiVM, AntiAnalysis, AntiDump, AntiDisassm, AntiDebug functions
-- PE Loader creator
+- Undetected injection methods
+- Advanced evasion module
+- Remote PE Loader
 - Custom shellcode
 - Custom command
 - Advanced privilege escalation
 - Advanced persistence
-- CLI / full interactive
+- Full interactive
 - User's manual
 - Customer support, Subscription to new versions, Customized request
 
