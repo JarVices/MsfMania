@@ -58,6 +58,8 @@ And that trying to make updates because people send it to VirusTotal will not be
 So I decided to create the PRO version of MsfMania. Which not only contains a tool to make msfvenom payloads undetectable. 
 I plan to make this tool a real cyber weapon dedicated to Red-Teaming.
 
+Demo of PE Loader --> https://www.youtube.com/watch?v=Ka-mygowNL0
+
 To contact me : 
 G1ft3dC0d3 [a,t] protonmail [d,o,t] com
 
