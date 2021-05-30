@@ -51,17 +51,12 @@ python3 MsfMania.py -h
 
 # PRO version
 ## Informations
-Recently I noticed that my tool, MsfMania, has started to become popular and is being shared on skid forums. This was to be expected.
-So I know that the tool that is currently FUD, will not remain so forever. 
-And that trying to make updates because people send it to VirusTotal will not be useful.
+The PRO version of MsfMania is under active development. 
+It is dedicated to freelance pentesters or corporate red-teamers but students can also acquire it.
 
-So I decided to create the PRO version of MsfMania. Which not only contains a tool to make msfvenom payloads undetectable. 
-I plan to make this tool a real cyber weapon dedicated to Red-Teaming.
+Demo of MsfMania PE Loader --> https://www.youtube.com/watch?v=Ka-mygowNL0
 
-Demo of PE Loader --> https://www.youtube.com/watch?v=Ka-mygowNL0
-
-To contact me : 
-G1ft3dC0d3 [a,t] protonmail [d,o,t] com
+You want MsfMania PRO ? You can contact me : G1ft3dC0d3 [a,t] protonmail [d,o,t] com
 
 ## PRO version features
 - FUD features of MsfMania public version
