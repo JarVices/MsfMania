@@ -47,7 +47,6 @@ python3 MsfMania.py -h
 - Autorun Metasploit config
 - Sign executable with spoofed certificate
 - UPX Packer
-- FUD
 
 # PRO version
 ## Informations
