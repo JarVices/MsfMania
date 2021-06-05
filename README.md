@@ -1,6 +1,7 @@
 # MsfMania
 MsfMania is a command line tool developed in Python that is designed to bypass antivirus software on Windows and Linux/Mac in the future.
-
+(Currently detected for the community version)
+https://www.virustotal.com/gui/file/61c9aaf5f3c5afc4f217356a70326b962ff7a7aa63fc9dd050dfa2a169612936/details
 ![alt text](https://github.com/G1ft3dC0d3/MsfMania/blob/master/VirusTotal.png)
 
 ![alt text](https://github.com/G1ft3dC0d3/MsfMania/blob/master/MsfMania.png)
@@ -12,7 +13,7 @@ MsfMania is a command line tool developed in Python that is designed to bypass a
 * [Requirements](#Requirements)
 * [Installation](#Installation)
 * [Usage](#Usage)
-* [Free version features](#Free-version-features)
+* [Community version features](#Community-version-features)
 * [Donations](#Donations)
 
 # PRO version
@@ -22,6 +23,7 @@ It is dedicated to freelance pentesters or corporate red-teamers but students ca
 
 Why buy the PRO version? Well, the community version was FUD in March but quickly became unusable due to the number of downloads on VirusTotal...
 The PRO version is often updated and has a customer service. 
+The evades methods used in the PRO version are much more advanced than the community version.
 The community version will never be updated again and the version still has several years of existence in the future.
 
 Demo of MsfMania PE Loader --> https://www.youtube.com/watch?v=Ka-mygowNL0
