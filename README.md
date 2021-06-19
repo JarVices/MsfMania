@@ -34,7 +34,7 @@ The community version will never be updated again and the version still has seve
 
 Demo of MsfMania PE Loader --> https://www.youtube.com/watch?v=Ka-mygowNL0
 
-You want MsfMania PRO ? You can contact me : G1ft3dC0d3 [a,t] protonmail [d,o,t] com
+You want MsfMania PRO ? You can buy it here https://shoppy.gg/product/qelF87f or you can contact me : G1ft3dC0d3 [a,t] protonmail [d,o,t] com
 
 ## PRO version features
 - FUD features of MsfMania public version
