@@ -30,6 +30,7 @@ These are designed to keep your backdoor undetected for a very long time. A simp
 The community version will never be updated again and the version still has several years of existence in the future.
 
 Demo of MsfMania PE Loader --> https://www.youtube.com/watch?v=Ka-mygowNL0
+
 Demo of MsfMania 0.2.1 (last version) --> https://www.youtube.com/watch?v=o19GEnHy-is
 
 You want MsfMania PRO 0.2.1 ? You can buy it here https://shoppy.gg/product/qelF87f or you can contact me : G1ft3dC0d3 [a,t] protonmail [d,o,t] com
