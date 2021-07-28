@@ -1,8 +1,5 @@
 # MsfMania
 MsfMania is a command line tool developed in Python that is designed to bypass antivirus software on Windows and Linux/Mac in the future.
-(Currently detected for the community version)
-
-https://www.virustotal.com/gui/file/61c9aaf5f3c5afc4f217356a70326b962ff7a7aa63fc9dd050dfa2a169612936/details
 ![alt text](https://github.com/G1ft3dC0d3/MsfMania/blob/master/VirusTotal.png)
 
 ![alt text](https://github.com/G1ft3dC0d3/MsfMania/blob/master/MsfMania.png)
@@ -33,18 +30,22 @@ These are designed to keep your backdoor undetected for a very long time. A simp
 The community version will never be updated again and the version still has several years of existence in the future.
 
 Demo of MsfMania PE Loader --> https://www.youtube.com/watch?v=Ka-mygowNL0
+Demo of MsfMania 0.2.1 (last version) --> https://www.youtube.com/watch?v=o19GEnHy-is
 
-You want MsfMania PRO ? You can buy it here https://shoppy.gg/product/qelF87f or you can contact me : G1ft3dC0d3 [a,t] protonmail [d,o,t] com
+You want MsfMania PRO 0.2.1 ? You can buy it here https://shoppy.gg/product/qelF87f or you can contact me : G1ft3dC0d3 [a,t] protonmail [d,o,t] com
 
 You can also join the Telegram group https://t.me/MsfManiaPRO
 
-## PRO version features
+## PRO version features (NEW VERSION)
 - FUD features of MsfMania public version
 - Undetected injection methods
-- Advanced evasion module
+- DLL Unhooking
+- Stealthy Process Hollowing
+- Windows mitigation policies
 - Remote PE Loader
 - Custom shellcode
 - Custom command
+- Advanced evasion module
 - Advanced privilege escalation
 - Advanced persistence
 - Full interactive
