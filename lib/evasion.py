@@ -1,5 +1,3 @@
-import random
-
 from lib import core
 from OpenSSL import crypto
 from pathlib import Path
@@ -182,23 +180,163 @@ def junk_code():
     while injection != number:
         injection += 1
         H = randint(32, 64)
+        rand_junk = randint(1, 52)   # 1 - 52
 
-        # Encoders
-        encoder_funcs = [sum_first_n_integer_1, sum_first_n_inter_2, fibonacci, twin_tower, back_to_zero,
-                         back_to_num_1, back_to_num_2, primes_number_soe, primes_number_sos, average_1,
-                         average_2, average_variance_stanard_and_deviation_1, average_variance_stanard_and_deviation_2,
-                         reverse_array_1, reverse_array_2, double_reverse_array_1, double_reverse_array_2,
-                         random_numbers, buble_sort_int_array, buble_sort_float_array, gnome_sort_int_array,
-                         last_armstrong, odd_or_even_1, odd_or_even_2, ceil_routine_1, ceil_routine_2, floor_routine_1,
-                         floor_routine_2, acos_routine_1, acos_routine_2, asin_routine_1, asin_routine_2,
-                         atan_routine_1, atan_routine_2, fabs_routine_1, fabs_routine_2, exp_routine_1, exp_routine_2,
-                         ln_routine_1, ln_routine_2, log10_routine_1, log10_routine_2, fmod_routine_1, fmod_routine_2,
-                         ldexp_routine_1, ldexp_routine_2, geometric_1, geometric_2, geometric_3, geometric_4,
-                         geometric_5, shaker_snort]
+        if rand_junk == 1:
+            code += sum_first_n_integer_1(H)
 
-        # Select random encoder function from list and run it with random argument from range
-        random.choice(encoder_funcs)(H)
+        elif rand_junk == 2:
+            code += sum_first_n_inter_2(H)
 
+        elif rand_junk == 3:
+            code += fibonacci(H)
+
+        elif rand_junk == 4:
+            code += twin_tower(H)
+
+        elif rand_junk == 5:
+            code += back_to_zero(H)
+
+        elif rand_junk == 6:
+            code += back_to_num_1(H)
+
+        elif rand_junk == 7:
+            code += back_to_num_2(H)
+
+        elif rand_junk == 8:
+            code += primes_number_soe(H)
+
+        elif rand_junk == 9:
+            code += primes_number_sos(H)
+
+        elif rand_junk == 10:
+            code += average_1(H)
+
+        elif rand_junk == 11:
+            code += average_2(H)
+
+        elif rand_junk == 12:
+            code += average_variance_stanard_and_deviation_1(H)
+
+        elif rand_junk == 13:
+            code += average_variance_stanard_and_deviation_2(H)
+
+        elif rand_junk == 14:
+            code += reverse_array_1(H)
+
+        elif rand_junk == 15:
+            code += reverse_array_2(H)
+
+        elif rand_junk == 16:
+            code += double_reverse_array_1(H)
+
+        elif rand_junk == 17:
+            code += double_reverse_array_2(H)
+
+        elif rand_junk == 18:
+            code += random_numbers(H)
+
+        elif rand_junk == 19:
+            code += buble_sort_int_array(H)
+
+        elif rand_junk == 20:
+            code += buble_sort_float_array(H)
+
+        elif rand_junk == 21:
+            code += gnome_sort_int_array(H)
+
+        elif rand_junk == 22:
+            code += last_armstrong(H)
+
+        elif rand_junk == 23:
+            code += odd_or_even_1(H)
+
+        elif rand_junk == 24:
+            code += odd_or_even_2(H)
+
+        elif rand_junk == 25:
+            code += ceil_routine_1(H)
+
+        elif rand_junk == 26:
+            code += ceil_routine_2(H)
+
+        elif rand_junk == 27:
+            code += floor_routine_1(H)
+
+        elif rand_junk == 28:
+            code += floor_routine_2(H)
+
+        elif rand_junk == 29:
+            code += acos_routine_1(H)
+
+        elif rand_junk == 30:
+            code += acos_routine_2(H)
+
+        elif rand_junk == 31:
+            code += asin_routine_1(H)
+
+        elif rand_junk == 32:
+            code += asin_routine_2(H)
+
+        elif rand_junk == 33:
+            code += atan_routine_1(H)
+
+        elif rand_junk == 34:
+            code += atan_routine_2(H)
+
+        elif rand_junk == 35:
+            code += fabs_routine_1(H)
+
+        elif rand_junk == 36:
+            code += fabs_routine_2(H)
+
+        elif rand_junk == 37:
+            code += exp_routine_1(H)
+
+        elif rand_junk == 38:
+            code += exp_routine_2(H)
+
+        elif rand_junk == 39:
+            code += ln_routine_1(H)
+
+        elif rand_junk == 40:
+            code += ln_routine_2(H)
+
+        elif rand_junk == 41:
+            code += log10_routine_1(H)
+
+        elif rand_junk == 42:
+            code += log10_routine_2(H)
+
+        elif rand_junk == 43:
+            code += fmod_routine_1(H)
+
+        elif rand_junk == 44:
+            code += fmod_routine_2(H)
+
+        elif rand_junk == 45:
+            code += ldexp_routine_1(H)
+
+        elif rand_junk == 46:
+            code += ldexp_routine_2(H)
+
+        elif rand_junk == 47:
+            code += geometric_1(H)
+
+        elif rand_junk == 48:
+            code += geometric_2(H)
+
+        elif rand_junk == 49:
+            code += geometric_3(H)
+
+        elif rand_junk == 50:
+            code += geometric_4(H)
+
+        elif rand_junk == 51:
+            code += geometric_5(H)
+
+        elif rand_junk == 52:
+            code += shaker_snort(H)
     return code
 
 
