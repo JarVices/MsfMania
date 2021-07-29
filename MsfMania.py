@@ -22,19 +22,10 @@ final_code = ""
 icon = ""
 
 
-def check_requirements():
-    required = ["x86_64-w64-mingw32-windres", "x86_64-w64-mingw32-gcc", "i686-w64-mingw32-windres", "i686-w64-mingw32-gcc", "rar", "msfvenom", "osslsigncode", "upx"]
-    to_install = ["mingw-w64", "rar", "metasploit-framework", "osslsigncode"]
-    not_installed = []
-    for i in required:
-        a = which(i)
-        if a is None:
-            core.not_installed(i)
-            not_installed.append(i)
-
-    if len(not_installed) != 0:
-        for package in to_install:
-            call(['apt-get', '-y', 'install', package])
+def install_requirements():
+    apt_install_cmd = "apt-get -y install mingw-w64 gcc-mingw-w64-x86-64-win32 gcc-mingw-w64-i686-win32" + \
+                  " binutils-mingw-w64-x86-64 binutils-mingw-w64-i686 rar metasploit-framework osslsigncode upx-ucl"
+    call(apt_install_cmd.split())
 
 
 def check_directory():
@@ -209,7 +200,7 @@ def check_mscript():
 
 if __name__ == '__main__':
     core.banner()
-    check_requirements()
+    install_requirements()
     check_directory()
 
     parser = argparse.ArgumentParser()
