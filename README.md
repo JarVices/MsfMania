@@ -35,7 +35,7 @@ Demo of MsfMania 0.2.1 (last version) --> https://www.youtube.com/watch?v=o19GEn
 
 You want MsfMania PRO 0.2.1 ? You can buy it here https://shoppy.gg/product/qelF87f or you can contact me : G1ft3dC0d3 [a,t] protonmail [d,o,t] com
 
-You can also join the Telegram group https://t.me/MsfManiaPRO
+You can also join the Telegram group https://t.me/msfmaniapros
 
 ## PRO version features (NEW VERSION)
 - FUD features of MsfMania public version
