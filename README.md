@@ -33,7 +33,7 @@ Demo of MsfMania PE Loader --> https://www.youtube.com/watch?v=Ka-mygowNL0
 
 Demo of MsfMania 0.2.1 (last version) --> https://www.youtube.com/watch?v=o19GEnHy-is
 
-You want MsfMania PRO 0.2.1 ? You can buy it here https://shoppy.gg/product/qelF87f or you can contact me : G1ft3dC0d3 [a,t] protonmail [d,o,t] com
+You want MsfMania PRO 0.2.1 ? You can buy it here https://shoppy.gg/product/qelF87f or you can contact me via Telegram : @inapte
 
 You can also join the Telegram group https://t.me/msfmaniapros
 
