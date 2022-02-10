@@ -10,7 +10,6 @@ MsfMania is a command line tool developed in Python that is designed to bypass a
 * [Installation](#Installation)
 * [Usage](#Usage)
 * [Community version features](#Community-version-features)
-* [Donations](#Donations)
 
 # PRO version
 Demo of MsfMania PE Loader --> https://www.youtube.com/watch?v=Ka-mygowNL0
@@ -48,7 +47,3 @@ python3 MsfMania.py -h
 - Metasploit auto config
 - Sign executable
 - UPX Packer
-
-## Donations
-![alt text](https://agile-manufacturing.com/wp-content/uploads/2019/10/Bitcoin-Accepted-3x1-2-1.jpg)
-bc1q7d2wavr7gm4sw846vtdv9dyj42g55sxpaemkac
