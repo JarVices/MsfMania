@@ -5,9 +5,7 @@ MsfMania is a command line tool developed in Python that is designed to bypass a
 ![alt text](https://github.com/G1ft3dC0d3/MsfMania/blob/master/MsfMania.png)
 
 ## Summary
-* [PRO & Custom version](#PRO-version)
-  * [Informations](#Informations)
-  * [PRO version features](#PRO-version-features)
+* [PRO version](#PRO-version)
 * [Requirements](#Requirements)
 * [Installation](#Installation)
 * [Usage](#Usage)
