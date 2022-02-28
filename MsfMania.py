@@ -56,7 +56,7 @@ def check_payload_requirements():
                 core.error_payload_lport()
         else:
             core.error_payload_lhost()
-    elif args.shellcustom:
+    elif args.msfcustom:
         pass
     else:
         core.error_payload_required()
